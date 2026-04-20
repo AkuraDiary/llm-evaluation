@@ -1,0 +1,6410 @@
+{
+  "experiment_metadata": {
+    "experiment_id": "EXP_DYSLEXIA_LLM_EVAL_OLLAMA_V4_Q1",
+    "title": "Comprehensive Free Multi-Model Evaluation of LLM-Generated Educational Content for Children with Dyslexia Using Local Ollama Models",
+    "description": "A fully open-source, zero-cost systematic multi-model evaluation of Large Language Model outputs for generating educationally appropriate questions and answers tailored to children with dyslexia. All models run locally via Ollama (no API cost). Evaluation employs 14 metrics: NLP similarity (ROUGE-1/2/L, BLEU), readability (Flesch RE, FK Grade, Gunning Fog, SMOG, ARI, Coleman-Liau), dyslexia compliance, LLM-as-Judge (local), toxicity, bias, context relevancy, faithfulness, answer relevancy, and lexical diversity. Statistics: descriptive, Shapiro-Wilk, Mann-Whitney U, Kruskal-Wallis H, Cohen's d, Pearson r, Spearman rho, p-values, Bonferroni, 95% CI (t), Bootstrap CI (2000).",
+    "research_domain": "Special Education Technology / NLP / Computational Linguistics",
+    "task_type": "Educational Question-Answer Generation for Dyslexic Learners",
+    "target_population": "Children with Dyslexia, Elementary School Level, Grade 1-3, Indonesia",
+    "evaluation_infrastructure": "Ollama (Local, Free, Open-Source)",
+    "models_evaluated": [
+      "gpt-oss:20b-cloud"
+    ],
+    "judge_model": "gpt-oss:120b-cloud",
+    "generator_system_prompt": "Kamu adalah guru sekolah dasar yang ahli dalam membuat soal untuk anak-anak dengan disleksia. Ikuti aturan berikut dengan ketat:\n1. Gunakan kalimat sangat pendek, maksimal 8 kata per kalimat.\n2. Gunakan kata-kata sederhana sehari-hari, hindari istilah teknis.\n3. Gunakan objek konkret yang mudah divisualisasikan.\n4. Angka harus kecil, antara 1 sampai 20.\n5. Sertakan jawaban secara eksplisit di akhir.\n6. Jangan gunakan kalimat majemuk bertingkat.\nLangsung berikan soal tanpa penjelasan tambahan.",
+    "timestamp_start_utc": "2026-04-20T13:04:49.503418+00:00",
+    "timestamp_end_utc": "2026-04-20T13:05:21.877404+00:00",
+    "total_execution_time_seconds": 32.3585,
+    "python_version": "3.12.7 (main, Feb 13 2025, 12:36:31) [Clang 16.0.0 (clang-1600.0.26.3)]",
+    "platform": "macOS-26.1-arm64-arm-64bit",
+    "total_test_cases": 8,
+    "total_metrics_per_case": 14,
+    "total_evaluations_performed": 112,
+    "cost_usd": 0.0,
+    "reproducibility_note": "All models are local. Pin Ollama model versions for full reproducibility."
+  },
+  "evaluation_configuration": {
+    "metrics_applied": [
+      {
+        "metric_name": "answer_relevancy",
+        "weight": 1.0,
+        "is_inverted": false,
+        "threshold": 0.5
+      },
+      {
+        "metric_name": "context_relevancy",
+        "weight": 1.0,
+        "is_inverted": false,
+        "threshold": 0.5
+      },
+      {
+        "metric_name": "faithfulness",
+        "weight": 1.2,
+        "is_inverted": false,
+        "threshold": 0.5
+      },
+      {
+        "metric_name": "toxicity",
+        "weight": 2.0,
+        "is_inverted": true,
+        "threshold": 0.1
+      },
+      {
+        "metric_name": "bias",
+        "weight": 1.5,
+        "is_inverted": true,
+        "threshold": 0.1
+      },
+      {
+        "metric_name": "dyslexia_compliance",
+        "weight": 2.5,
+        "is_inverted": false,
+        "threshold": 0.5
+      },
+      {
+        "metric_name": "llm_judge_score",
+        "weight": 2.0,
+        "is_inverted": false,
+        "threshold": 0.5
+      },
+      {
+        "metric_name": "rouge1_f1",
+        "weight": 0.8,
+        "is_inverted": false,
+        "threshold": 0.5
+      },
+      {
+        "metric_name": "rouge2_f1",
+        "weight": 0.6,
+        "is_inverted": false,
+        "threshold": 0.5
+      },
+      {
+        "metric_name": "rougeL_f1",
+        "weight": 0.8,
+        "is_inverted": false,
+        "threshold": 0.5
+      },
+      {
+        "metric_name": "bleu_avg",
+        "weight": 0.6,
+        "is_inverted": false,
+        "threshold": 0.5
+      },
+      {
+        "metric_name": "flesch_reading_ease",
+        "weight": 1.5,
+        "is_inverted": false,
+        "threshold": 0.5
+      },
+      {
+        "metric_name": "avg_sentence_length_words",
+        "weight": 1.0,
+        "is_inverted": true,
+        "threshold": 0.5
+      },
+      {
+        "metric_name": "type_token_ratio",
+        "weight": 0.5,
+        "is_inverted": false,
+        "threshold": 0.5
+      }
+    ],
+    "composite_score_formula": "Weighted average of normalized metric scores; inverted metrics use (1-score) before normalization",
+    "statistical_methods": [
+      "Descriptive statistics: mean, std, median, min, max, range, Q1, Q3, IQR, CV, skewness, kurtosis",
+      "Normality: Shapiro-Wilk approximation",
+      "Non-parametric pairwise: Mann-Whitney U + z-approx p-value",
+      "Non-parametric multi-group: Kruskal-Wallis H + chi-square approx p-value",
+      "Effect size: Cohen's d (pooled std)",
+      "Parametric correlation: Pearson r + t-test p-value",
+      "Non-parametric correlation: Spearman rho + t-approx p-value",
+      "Multiple comparisons: Bonferroni correction",
+      "95% CI: t-distribution (exact t-critical for n<30)",
+      "Robust CI: Bootstrap 95% (2000 resamples, percentile, seed=42)"
+    ],
+    "dyslexia_compliance_rubric": {
+      "avg_sentence_length_le6_words": "30 points",
+      "flesch_reading_ease_ge80": "25 points",
+      "has_explicit_answer": "20 points",
+      "numbers_in_range_1_20": "15 points",
+      "no_forbidden_complex_words": "10 points"
+    }
+  },
+  "test_cases": [
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_001",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "gpt-oss:20b-cloud",
+      "input_prompt": "Buatkan 1 soal matematika penjumlahan sederhana untuk anak disleksia dengan tema buah apel beserta jawabannya.",
+      "actual_output": "",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban eksplisit.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.55,
+          "normalized_score": 0.55,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.375
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.0,
+        "rouge1_recall": 0.0,
+        "rouge1_f1": 0.0,
+        "rouge2_precision": 0.0,
+        "rouge2_recall": 0.0,
+        "rouge2_f1": 0.0,
+        "rougeL_precision": 0.0,
+        "rougeL_recall": 0.0,
+        "rougeL_f1": 0.0
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.0,
+        "bleu2": 0.0,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.0
+      },
+      "readability_analysis": {
+        "total_chars": 0,
+        "total_words": 0,
+        "total_sentences": 0,
+        "total_syllables": 0,
+        "avg_word_length_chars": 0.0,
+        "avg_sentence_length_words": 0.0,
+        "avg_syllables_per_word": 0.0,
+        "flesch_reading_ease": 0.0,
+        "flesch_kincaid_grade": 0.0,
+        "gunning_fog_index": 0.0,
+        "smog_index": 0.0,
+        "automated_readability_index": 0.0,
+        "coleman_liau_index": 0.0,
+        "type_token_ratio": 0.0,
+        "lexical_diversity": 0.0,
+        "max_sentence_length_words": 0,
+        "min_sentence_length_words": 0,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": false,
+        "has_question_mark": false,
+        "numeric_count": 0,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.404412,
+        "total_metrics": 14,
+        "metrics_passed": 5,
+        "metrics_failed": 9,
+        "pass_rate": 0.357143,
+        "dyslexia_compliance_score": 0.55,
+        "execution_time_seconds": 1.0226
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_002",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "gpt-oss:20b-cloud",
+      "input_prompt": "Buatkan 1 soal penjumlahan untuk anak disleksia bertema bola mainan beserta jawabannya.",
+      "actual_output": "",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban eksplisit.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.55,
+          "normalized_score": 0.55,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.375
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.0,
+        "rouge1_recall": 0.0,
+        "rouge1_f1": 0.0,
+        "rouge2_precision": 0.0,
+        "rouge2_recall": 0.0,
+        "rouge2_f1": 0.0,
+        "rougeL_precision": 0.0,
+        "rougeL_recall": 0.0,
+        "rougeL_f1": 0.0
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.0,
+        "bleu2": 0.0,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.0
+      },
+      "readability_analysis": {
+        "total_chars": 0,
+        "total_words": 0,
+        "total_sentences": 0,
+        "total_syllables": 0,
+        "avg_word_length_chars": 0.0,
+        "avg_sentence_length_words": 0.0,
+        "avg_syllables_per_word": 0.0,
+        "flesch_reading_ease": 0.0,
+        "flesch_kincaid_grade": 0.0,
+        "gunning_fog_index": 0.0,
+        "smog_index": 0.0,
+        "automated_readability_index": 0.0,
+        "coleman_liau_index": 0.0,
+        "type_token_ratio": 0.0,
+        "lexical_diversity": 0.0,
+        "max_sentence_length_words": 0,
+        "min_sentence_length_words": 0,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": false,
+        "has_question_mark": false,
+        "numeric_count": 0,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.404412,
+        "total_metrics": 14,
+        "metrics_passed": 5,
+        "metrics_failed": 9,
+        "pass_rate": 0.357143,
+        "dyslexia_compliance_score": 0.55,
+        "execution_time_seconds": 1.3062
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_003",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "gpt-oss:20b-cloud",
+      "input_prompt": "Buatkan soal penjumlahan sederhana bertema kelereng untuk anak disleksia kelas 1 SD.",
+      "actual_output": "",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban eksplisit.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.55,
+          "normalized_score": 0.55,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.375
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.0,
+        "rouge1_recall": 0.0,
+        "rouge1_f1": 0.0,
+        "rouge2_precision": 0.0,
+        "rouge2_recall": 0.0,
+        "rouge2_f1": 0.0,
+        "rougeL_precision": 0.0,
+        "rougeL_recall": 0.0,
+        "rougeL_f1": 0.0
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.0,
+        "bleu2": 0.0,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.0
+      },
+      "readability_analysis": {
+        "total_chars": 0,
+        "total_words": 0,
+        "total_sentences": 0,
+        "total_syllables": 0,
+        "avg_word_length_chars": 0.0,
+        "avg_sentence_length_words": 0.0,
+        "avg_syllables_per_word": 0.0,
+        "flesch_reading_ease": 0.0,
+        "flesch_kincaid_grade": 0.0,
+        "gunning_fog_index": 0.0,
+        "smog_index": 0.0,
+        "automated_readability_index": 0.0,
+        "coleman_liau_index": 0.0,
+        "type_token_ratio": 0.0,
+        "lexical_diversity": 0.0,
+        "max_sentence_length_words": 0,
+        "min_sentence_length_words": 0,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": false,
+        "has_question_mark": false,
+        "numeric_count": 0,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.404412,
+        "total_metrics": 14,
+        "metrics_passed": 5,
+        "metrics_failed": 9,
+        "pass_rate": 0.357143,
+        "dyslexia_compliance_score": 0.55,
+        "execution_time_seconds": 4.1241
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_004",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "gpt-oss:20b-cloud",
+      "input_prompt": "Buat soal penjumlahan anak disleksia bertema pensil dengan jawaban yang jelas.",
+      "actual_output": "",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban eksplisit.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.55,
+          "normalized_score": 0.55,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.375
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.0,
+        "rouge1_recall": 0.0,
+        "rouge1_f1": 0.0,
+        "rouge2_precision": 0.0,
+        "rouge2_recall": 0.0,
+        "rouge2_f1": 0.0,
+        "rougeL_precision": 0.0,
+        "rougeL_recall": 0.0,
+        "rougeL_f1": 0.0
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.0,
+        "bleu2": 0.0,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.0
+      },
+      "readability_analysis": {
+        "total_chars": 0,
+        "total_words": 0,
+        "total_sentences": 0,
+        "total_syllables": 0,
+        "avg_word_length_chars": 0.0,
+        "avg_sentence_length_words": 0.0,
+        "avg_syllables_per_word": 0.0,
+        "flesch_reading_ease": 0.0,
+        "flesch_kincaid_grade": 0.0,
+        "gunning_fog_index": 0.0,
+        "smog_index": 0.0,
+        "automated_readability_index": 0.0,
+        "coleman_liau_index": 0.0,
+        "type_token_ratio": 0.0,
+        "lexical_diversity": 0.0,
+        "max_sentence_length_words": 0,
+        "min_sentence_length_words": 0,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": false,
+        "has_question_mark": false,
+        "numeric_count": 0,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.404412,
+        "total_metrics": 14,
+        "metrics_passed": 5,
+        "metrics_failed": 9,
+        "pass_rate": 0.357143,
+        "dyslexia_compliance_score": 0.55,
+        "execution_time_seconds": 5.2209
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_005",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "gpt-oss:20b-cloud",
+      "input_prompt": "Buat soal penjumlahan untuk anak disleksia dengan tema ikan di akuarium.",
+      "actual_output": "",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban eksplisit.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.55,
+          "normalized_score": 0.55,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.375
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.0,
+        "rouge1_recall": 0.0,
+        "rouge1_f1": 0.0,
+        "rouge2_precision": 0.0,
+        "rouge2_recall": 0.0,
+        "rouge2_f1": 0.0,
+        "rougeL_precision": 0.0,
+        "rougeL_recall": 0.0,
+        "rougeL_f1": 0.0
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.0,
+        "bleu2": 0.0,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.0
+      },
+      "readability_analysis": {
+        "total_chars": 0,
+        "total_words": 0,
+        "total_sentences": 0,
+        "total_syllables": 0,
+        "avg_word_length_chars": 0.0,
+        "avg_sentence_length_words": 0.0,
+        "avg_syllables_per_word": 0.0,
+        "flesch_reading_ease": 0.0,
+        "flesch_kincaid_grade": 0.0,
+        "gunning_fog_index": 0.0,
+        "smog_index": 0.0,
+        "automated_readability_index": 0.0,
+        "coleman_liau_index": 0.0,
+        "type_token_ratio": 0.0,
+        "lexical_diversity": 0.0,
+        "max_sentence_length_words": 0,
+        "min_sentence_length_words": 0,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": false,
+        "has_question_mark": false,
+        "numeric_count": 0,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.404412,
+        "total_metrics": 14,
+        "metrics_passed": 5,
+        "metrics_failed": 9,
+        "pass_rate": 0.357143,
+        "dyslexia_compliance_score": 0.55,
+        "execution_time_seconds": 1.5345
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_006",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "gpt-oss:20b-cloud",
+      "input_prompt": "Buatkan soal penjumlahan bertema bunga di taman untuk anak disleksia.",
+      "actual_output": "",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban eksplisit.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.55,
+          "normalized_score": 0.55,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.375
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.0,
+        "rouge1_recall": 0.0,
+        "rouge1_f1": 0.0,
+        "rouge2_precision": 0.0,
+        "rouge2_recall": 0.0,
+        "rouge2_f1": 0.0,
+        "rougeL_precision": 0.0,
+        "rougeL_recall": 0.0,
+        "rougeL_f1": 0.0
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.0,
+        "bleu2": 0.0,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.0
+      },
+      "readability_analysis": {
+        "total_chars": 0,
+        "total_words": 0,
+        "total_sentences": 0,
+        "total_syllables": 0,
+        "avg_word_length_chars": 0.0,
+        "avg_sentence_length_words": 0.0,
+        "avg_syllables_per_word": 0.0,
+        "flesch_reading_ease": 0.0,
+        "flesch_kincaid_grade": 0.0,
+        "gunning_fog_index": 0.0,
+        "smog_index": 0.0,
+        "automated_readability_index": 0.0,
+        "coleman_liau_index": 0.0,
+        "type_token_ratio": 0.0,
+        "lexical_diversity": 0.0,
+        "max_sentence_length_words": 0,
+        "min_sentence_length_words": 0,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": false,
+        "has_question_mark": false,
+        "numeric_count": 0,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.404412,
+        "total_metrics": 14,
+        "metrics_passed": 5,
+        "metrics_failed": 9,
+        "pass_rate": 0.357143,
+        "dyslexia_compliance_score": 0.55,
+        "execution_time_seconds": 1.0238
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_007",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "gpt-oss:20b-cloud",
+      "input_prompt": "Buatkan soal penjumlahan sederhana bertema kucing dan anjing untuk anak disleksia.",
+      "actual_output": "",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban eksplisit.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.55,
+          "normalized_score": 0.55,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.375
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.0,
+        "rouge1_recall": 0.0,
+        "rouge1_f1": 0.0,
+        "rouge2_precision": 0.0,
+        "rouge2_recall": 0.0,
+        "rouge2_f1": 0.0,
+        "rougeL_precision": 0.0,
+        "rougeL_recall": 0.0,
+        "rougeL_f1": 0.0
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.0,
+        "bleu2": 0.0,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.0
+      },
+      "readability_analysis": {
+        "total_chars": 0,
+        "total_words": 0,
+        "total_sentences": 0,
+        "total_syllables": 0,
+        "avg_word_length_chars": 0.0,
+        "avg_sentence_length_words": 0.0,
+        "avg_syllables_per_word": 0.0,
+        "flesch_reading_ease": 0.0,
+        "flesch_kincaid_grade": 0.0,
+        "gunning_fog_index": 0.0,
+        "smog_index": 0.0,
+        "automated_readability_index": 0.0,
+        "coleman_liau_index": 0.0,
+        "type_token_ratio": 0.0,
+        "lexical_diversity": 0.0,
+        "max_sentence_length_words": 0,
+        "min_sentence_length_words": 0,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": false,
+        "has_question_mark": false,
+        "numeric_count": 0,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.404412,
+        "total_metrics": 14,
+        "metrics_passed": 5,
+        "metrics_failed": 9,
+        "pass_rate": 0.357143,
+        "dyslexia_compliance_score": 0.55,
+        "execution_time_seconds": 1.0241
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_008",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "gpt-oss:20b-cloud",
+      "input_prompt": "Buat 1 soal penjumlahan untuk anak disleksia bertema permen dengan jawaban.",
+      "actual_output": "Ada 5 permen, tambahkan 3 permen, berapa?  \nTotal 8 permen.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban eksplisit.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.281435,
+          "normalized_score": 0.281435,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.281435
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.0625,
+          "normalized_score": 0.0625,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0625
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.1875,
+          "normalized_score": 0.1875,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.225
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.65,
+          "normalized_score": 0.65,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.625
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.0,
+          "normalized_score": 0.0,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.0
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 41.02,
+          "normalized_score": 0.4102,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.6153
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 5.0,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.8,
+          "normalized_score": 0.8,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.4
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.0,
+        "rouge1_recall": 0.0,
+        "rouge1_f1": 0.0,
+        "rouge2_precision": 0.0,
+        "rouge2_recall": 0.0,
+        "rouge2_f1": 0.0,
+        "rougeL_precision": 0.0,
+        "rougeL_recall": 0.0,
+        "rougeL_f1": 0.0
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.0,
+        "bleu2": 0.0,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.0
+      },
+      "readability_analysis": {
+        "total_chars": 49,
+        "total_words": 10,
+        "total_sentences": 2,
+        "total_syllables": 19,
+        "avg_word_length_chars": 4.9,
+        "avg_sentence_length_words": 5.0,
+        "avg_syllables_per_word": 1.9,
+        "flesch_reading_ease": 41.02,
+        "flesch_kincaid_grade": 8.78,
+        "gunning_fog_index": 10.0,
+        "smog_index": 8.4772,
+        "automated_readability_index": 4.149,
+        "coleman_liau_index": 7.092,
+        "type_token_ratio": 0.8,
+        "lexical_diversity": 0.8,
+        "max_sentence_length_words": 7,
+        "min_sentence_length_words": 3,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": false,
+        "has_question_mark": true,
+        "numeric_count": 3,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.512308,
+        "total_metrics": 14,
+        "metrics_passed": 6,
+        "metrics_failed": 8,
+        "pass_rate": 0.428571,
+        "dyslexia_compliance_score": 0.65,
+        "execution_time_seconds": 1.0069
+      }
+    }
+  ],
+  "aggregate_statistics_per_metric": {
+    "answer_relevancy": {
+      "n": 8,
+      "mean": 0.035179,
+      "std": 0.099502,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.281435,
+      "range": 0.281435,
+      "q1_25th": 0.0,
+      "q3_75th": 0.0,
+      "iqr": 0.0,
+      "coefficient_of_variation": 2.828427,
+      "skewness": 2.828427,
+      "excess_kurtosis": 8.0,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 0.75,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": -0.04802,
+        "upper": 0.118379
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.0,
+        "upper": 0.105538
+      },
+      "all_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.281435
+      ]
+    },
+    "context_relevancy": {
+      "n": 8,
+      "mean": 0.007812,
+      "std": 0.022097,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0625,
+      "range": 0.0625,
+      "q1_25th": 0.0,
+      "q3_75th": 0.0,
+      "iqr": 0.0,
+      "coefficient_of_variation": 2.828427,
+      "skewness": 2.828427,
+      "excess_kurtosis": 8.0,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 0.75,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": -0.010664,
+        "upper": 0.026289
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.0,
+        "upper": 0.023438
+      },
+      "all_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0625
+      ]
+    },
+    "faithfulness": {
+      "n": 8,
+      "mean": 0.023438,
+      "std": 0.066291,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.1875,
+      "range": 0.1875,
+      "q1_25th": 0.0,
+      "q3_75th": 0.0,
+      "iqr": 0.0,
+      "coefficient_of_variation": 2.828427,
+      "skewness": 2.828427,
+      "excess_kurtosis": 8.0,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 0.75,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": -0.031992,
+        "upper": 0.078867
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.0,
+        "upper": 0.070312
+      },
+      "all_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.1875
+      ]
+    },
+    "toxicity": {
+      "n": 8,
+      "mean": 0.0,
+      "std": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "range": 0.0,
+      "q1_25th": 0.0,
+      "q3_75th": 0.0,
+      "iqr": 0.0,
+      "coefficient_of_variation": null,
+      "skewness": null,
+      "excess_kurtosis": null,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 1.0,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "all_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "bias": {
+      "n": 8,
+      "mean": 0.0,
+      "std": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "range": 0.0,
+      "q1_25th": 0.0,
+      "q3_75th": 0.0,
+      "iqr": 0.0,
+      "coefficient_of_variation": null,
+      "skewness": null,
+      "excess_kurtosis": null,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 1.0,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "all_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "dyslexia_compliance": {
+      "n": 8,
+      "mean": 0.5625,
+      "std": 0.035355,
+      "median": 0.55,
+      "min": 0.55,
+      "max": 0.65,
+      "range": 0.1,
+      "q1_25th": 0.55,
+      "q3_75th": 0.55,
+      "iqr": 0.0,
+      "coefficient_of_variation": 0.062854,
+      "skewness": 2.828427,
+      "excess_kurtosis": 8.0,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 0.75,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": 0.532937,
+        "upper": 0.592063
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.55,
+        "upper": 0.5875
+      },
+      "all_scores": [
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.65
+      ]
+    },
+    "llm_judge_score": {
+      "n": 8,
+      "mean": 0.5,
+      "std": 0.0,
+      "median": 0.5,
+      "min": 0.5,
+      "max": 0.5,
+      "range": 0.0,
+      "q1_25th": 0.5,
+      "q3_75th": 0.5,
+      "iqr": 0.0,
+      "coefficient_of_variation": 0.0,
+      "skewness": null,
+      "excess_kurtosis": null,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 1.0,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": 0.5,
+        "upper": 0.5
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.5,
+        "upper": 0.5
+      },
+      "all_scores": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "rouge1_f1": {
+      "n": 8,
+      "mean": 0.0,
+      "std": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "range": 0.0,
+      "q1_25th": 0.0,
+      "q3_75th": 0.0,
+      "iqr": 0.0,
+      "coefficient_of_variation": null,
+      "skewness": null,
+      "excess_kurtosis": null,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 1.0,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "all_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "rouge2_f1": {
+      "n": 8,
+      "mean": 0.0,
+      "std": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "range": 0.0,
+      "q1_25th": 0.0,
+      "q3_75th": 0.0,
+      "iqr": 0.0,
+      "coefficient_of_variation": null,
+      "skewness": null,
+      "excess_kurtosis": null,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 1.0,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "all_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "rougeL_f1": {
+      "n": 8,
+      "mean": 0.0,
+      "std": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "range": 0.0,
+      "q1_25th": 0.0,
+      "q3_75th": 0.0,
+      "iqr": 0.0,
+      "coefficient_of_variation": null,
+      "skewness": null,
+      "excess_kurtosis": null,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 1.0,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "all_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "bleu_avg": {
+      "n": 8,
+      "mean": 0.0,
+      "std": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "range": 0.0,
+      "q1_25th": 0.0,
+      "q3_75th": 0.0,
+      "iqr": 0.0,
+      "coefficient_of_variation": null,
+      "skewness": null,
+      "excess_kurtosis": null,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 1.0,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "all_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "flesch_reading_ease": {
+      "n": 8,
+      "mean": 5.1275,
+      "std": 14.50276,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 41.02,
+      "range": 41.02,
+      "q1_25th": 0.0,
+      "q3_75th": 0.0,
+      "iqr": 0.0,
+      "coefficient_of_variation": 2.828427,
+      "skewness": 2.828427,
+      "excess_kurtosis": 8.0,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 0.75,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": -6.999038,
+        "upper": 17.254038
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.0,
+        "upper": 15.3825
+      },
+      "all_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        41.02
+      ]
+    },
+    "avg_sentence_length_words": {
+      "n": 8,
+      "mean": 0.625,
+      "std": 1.767767,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 5.0,
+      "range": 5.0,
+      "q1_25th": 0.0,
+      "q3_75th": 0.0,
+      "iqr": 0.0,
+      "coefficient_of_variation": 2.828427,
+      "skewness": 2.828427,
+      "excess_kurtosis": 8.0,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 0.75,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": -0.853125,
+        "upper": 2.103125
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.0,
+        "upper": 1.875
+      },
+      "all_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ]
+    },
+    "type_token_ratio": {
+      "n": 8,
+      "mean": 0.1,
+      "std": 0.282843,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.8,
+      "range": 0.8,
+      "q1_25th": 0.0,
+      "q3_75th": 0.0,
+      "iqr": 0.0,
+      "coefficient_of_variation": 2.828427,
+      "skewness": 2.828427,
+      "excess_kurtosis": 8.0,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 0.75,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": -0.1365,
+        "upper": 0.3365
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.0,
+        "upper": 0.3
+      },
+      "all_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8
+      ]
+    }
+  },
+  "metric_correlation_matrix": {
+    "answer_relevancy_vs_context_relevancy": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "context_relevancy",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "answer_relevancy_vs_faithfulness": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "faithfulness",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "answer_relevancy_vs_toxicity": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "toxicity",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "answer_relevancy_vs_bias": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "bias",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "answer_relevancy_vs_dyslexia_compliance": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "dyslexia_compliance",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "answer_relevancy_vs_llm_judge_score": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "llm_judge_score",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "answer_relevancy_vs_rouge1_f1": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "rouge1_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "answer_relevancy_vs_rouge2_f1": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "rouge2_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "answer_relevancy_vs_rougeL_f1": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "rougeL_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "answer_relevancy_vs_bleu_avg": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "bleu_avg",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "answer_relevancy_vs_flesch_reading_ease": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "flesch_reading_ease",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "answer_relevancy_vs_avg_sentence_length_words": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "avg_sentence_length_words",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "answer_relevancy_vs_type_token_ratio": {
+      "metric_a": "answer_relevancy",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "context_relevancy_vs_faithfulness": {
+      "metric_a": "context_relevancy",
+      "metric_b": "faithfulness",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "context_relevancy_vs_toxicity": {
+      "metric_a": "context_relevancy",
+      "metric_b": "toxicity",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "context_relevancy_vs_bias": {
+      "metric_a": "context_relevancy",
+      "metric_b": "bias",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "context_relevancy_vs_dyslexia_compliance": {
+      "metric_a": "context_relevancy",
+      "metric_b": "dyslexia_compliance",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "context_relevancy_vs_llm_judge_score": {
+      "metric_a": "context_relevancy",
+      "metric_b": "llm_judge_score",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "context_relevancy_vs_rouge1_f1": {
+      "metric_a": "context_relevancy",
+      "metric_b": "rouge1_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "context_relevancy_vs_rouge2_f1": {
+      "metric_a": "context_relevancy",
+      "metric_b": "rouge2_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "context_relevancy_vs_rougeL_f1": {
+      "metric_a": "context_relevancy",
+      "metric_b": "rougeL_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "context_relevancy_vs_bleu_avg": {
+      "metric_a": "context_relevancy",
+      "metric_b": "bleu_avg",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "context_relevancy_vs_flesch_reading_ease": {
+      "metric_a": "context_relevancy",
+      "metric_b": "flesch_reading_ease",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "context_relevancy_vs_avg_sentence_length_words": {
+      "metric_a": "context_relevancy",
+      "metric_b": "avg_sentence_length_words",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "context_relevancy_vs_type_token_ratio": {
+      "metric_a": "context_relevancy",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "faithfulness_vs_toxicity": {
+      "metric_a": "faithfulness",
+      "metric_b": "toxicity",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "faithfulness_vs_bias": {
+      "metric_a": "faithfulness",
+      "metric_b": "bias",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "faithfulness_vs_dyslexia_compliance": {
+      "metric_a": "faithfulness",
+      "metric_b": "dyslexia_compliance",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "faithfulness_vs_llm_judge_score": {
+      "metric_a": "faithfulness",
+      "metric_b": "llm_judge_score",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "faithfulness_vs_rouge1_f1": {
+      "metric_a": "faithfulness",
+      "metric_b": "rouge1_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "faithfulness_vs_rouge2_f1": {
+      "metric_a": "faithfulness",
+      "metric_b": "rouge2_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "faithfulness_vs_rougeL_f1": {
+      "metric_a": "faithfulness",
+      "metric_b": "rougeL_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "faithfulness_vs_bleu_avg": {
+      "metric_a": "faithfulness",
+      "metric_b": "bleu_avg",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "faithfulness_vs_flesch_reading_ease": {
+      "metric_a": "faithfulness",
+      "metric_b": "flesch_reading_ease",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "faithfulness_vs_avg_sentence_length_words": {
+      "metric_a": "faithfulness",
+      "metric_b": "avg_sentence_length_words",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "faithfulness_vs_type_token_ratio": {
+      "metric_a": "faithfulness",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "toxicity_vs_bias": {
+      "metric_a": "toxicity",
+      "metric_b": "bias",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "toxicity_vs_dyslexia_compliance": {
+      "metric_a": "toxicity",
+      "metric_b": "dyslexia_compliance",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "toxicity_vs_llm_judge_score": {
+      "metric_a": "toxicity",
+      "metric_b": "llm_judge_score",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "toxicity_vs_rouge1_f1": {
+      "metric_a": "toxicity",
+      "metric_b": "rouge1_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "toxicity_vs_rouge2_f1": {
+      "metric_a": "toxicity",
+      "metric_b": "rouge2_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "toxicity_vs_rougeL_f1": {
+      "metric_a": "toxicity",
+      "metric_b": "rougeL_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "toxicity_vs_bleu_avg": {
+      "metric_a": "toxicity",
+      "metric_b": "bleu_avg",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "toxicity_vs_flesch_reading_ease": {
+      "metric_a": "toxicity",
+      "metric_b": "flesch_reading_ease",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "toxicity_vs_avg_sentence_length_words": {
+      "metric_a": "toxicity",
+      "metric_b": "avg_sentence_length_words",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "toxicity_vs_type_token_ratio": {
+      "metric_a": "toxicity",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "bias_vs_dyslexia_compliance": {
+      "metric_a": "bias",
+      "metric_b": "dyslexia_compliance",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "bias_vs_llm_judge_score": {
+      "metric_a": "bias",
+      "metric_b": "llm_judge_score",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "bias_vs_rouge1_f1": {
+      "metric_a": "bias",
+      "metric_b": "rouge1_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "bias_vs_rouge2_f1": {
+      "metric_a": "bias",
+      "metric_b": "rouge2_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "bias_vs_rougeL_f1": {
+      "metric_a": "bias",
+      "metric_b": "rougeL_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "bias_vs_bleu_avg": {
+      "metric_a": "bias",
+      "metric_b": "bleu_avg",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "bias_vs_flesch_reading_ease": {
+      "metric_a": "bias",
+      "metric_b": "flesch_reading_ease",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "bias_vs_avg_sentence_length_words": {
+      "metric_a": "bias",
+      "metric_b": "avg_sentence_length_words",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "bias_vs_type_token_ratio": {
+      "metric_a": "bias",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "dyslexia_compliance_vs_llm_judge_score": {
+      "metric_a": "dyslexia_compliance",
+      "metric_b": "llm_judge_score",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "dyslexia_compliance_vs_rouge1_f1": {
+      "metric_a": "dyslexia_compliance",
+      "metric_b": "rouge1_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "dyslexia_compliance_vs_rouge2_f1": {
+      "metric_a": "dyslexia_compliance",
+      "metric_b": "rouge2_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "dyslexia_compliance_vs_rougeL_f1": {
+      "metric_a": "dyslexia_compliance",
+      "metric_b": "rougeL_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "dyslexia_compliance_vs_bleu_avg": {
+      "metric_a": "dyslexia_compliance",
+      "metric_b": "bleu_avg",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "dyslexia_compliance_vs_flesch_reading_ease": {
+      "metric_a": "dyslexia_compliance",
+      "metric_b": "flesch_reading_ease",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "dyslexia_compliance_vs_avg_sentence_length_words": {
+      "metric_a": "dyslexia_compliance",
+      "metric_b": "avg_sentence_length_words",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "dyslexia_compliance_vs_type_token_ratio": {
+      "metric_a": "dyslexia_compliance",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "llm_judge_score_vs_rouge1_f1": {
+      "metric_a": "llm_judge_score",
+      "metric_b": "rouge1_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "llm_judge_score_vs_rouge2_f1": {
+      "metric_a": "llm_judge_score",
+      "metric_b": "rouge2_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "llm_judge_score_vs_rougeL_f1": {
+      "metric_a": "llm_judge_score",
+      "metric_b": "rougeL_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "llm_judge_score_vs_bleu_avg": {
+      "metric_a": "llm_judge_score",
+      "metric_b": "bleu_avg",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "llm_judge_score_vs_flesch_reading_ease": {
+      "metric_a": "llm_judge_score",
+      "metric_b": "flesch_reading_ease",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "llm_judge_score_vs_avg_sentence_length_words": {
+      "metric_a": "llm_judge_score",
+      "metric_b": "avg_sentence_length_words",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "llm_judge_score_vs_type_token_ratio": {
+      "metric_a": "llm_judge_score",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rouge1_f1_vs_rouge2_f1": {
+      "metric_a": "rouge1_f1",
+      "metric_b": "rouge2_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rouge1_f1_vs_rougeL_f1": {
+      "metric_a": "rouge1_f1",
+      "metric_b": "rougeL_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rouge1_f1_vs_bleu_avg": {
+      "metric_a": "rouge1_f1",
+      "metric_b": "bleu_avg",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rouge1_f1_vs_flesch_reading_ease": {
+      "metric_a": "rouge1_f1",
+      "metric_b": "flesch_reading_ease",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rouge1_f1_vs_avg_sentence_length_words": {
+      "metric_a": "rouge1_f1",
+      "metric_b": "avg_sentence_length_words",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rouge1_f1_vs_type_token_ratio": {
+      "metric_a": "rouge1_f1",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rouge2_f1_vs_rougeL_f1": {
+      "metric_a": "rouge2_f1",
+      "metric_b": "rougeL_f1",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rouge2_f1_vs_bleu_avg": {
+      "metric_a": "rouge2_f1",
+      "metric_b": "bleu_avg",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rouge2_f1_vs_flesch_reading_ease": {
+      "metric_a": "rouge2_f1",
+      "metric_b": "flesch_reading_ease",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rouge2_f1_vs_avg_sentence_length_words": {
+      "metric_a": "rouge2_f1",
+      "metric_b": "avg_sentence_length_words",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rouge2_f1_vs_type_token_ratio": {
+      "metric_a": "rouge2_f1",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rougeL_f1_vs_bleu_avg": {
+      "metric_a": "rougeL_f1",
+      "metric_b": "bleu_avg",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rougeL_f1_vs_flesch_reading_ease": {
+      "metric_a": "rougeL_f1",
+      "metric_b": "flesch_reading_ease",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rougeL_f1_vs_avg_sentence_length_words": {
+      "metric_a": "rougeL_f1",
+      "metric_b": "avg_sentence_length_words",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "rougeL_f1_vs_type_token_ratio": {
+      "metric_a": "rougeL_f1",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "bleu_avg_vs_flesch_reading_ease": {
+      "metric_a": "bleu_avg",
+      "metric_b": "flesch_reading_ease",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "bleu_avg_vs_avg_sentence_length_words": {
+      "metric_a": "bleu_avg",
+      "metric_b": "avg_sentence_length_words",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "bleu_avg_vs_type_token_ratio": {
+      "metric_a": "bleu_avg",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": null,
+      "pearson_p_value": null,
+      "spearman_rho": null,
+      "spearman_p_value": null,
+      "pearson_significant_p05": null,
+      "spearman_significant_p05": null,
+      "interpretation_pearson": "undefined",
+      "interpretation_spearman": "undefined"
+    },
+    "flesch_reading_ease_vs_avg_sentence_length_words": {
+      "metric_a": "flesch_reading_ease",
+      "metric_b": "avg_sentence_length_words",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "flesch_reading_ease_vs_type_token_ratio": {
+      "metric_a": "flesch_reading_ease",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    },
+    "avg_sentence_length_words_vs_type_token_ratio": {
+      "metric_a": "avg_sentence_length_words",
+      "metric_b": "type_token_ratio",
+      "n": 8,
+      "pearson_r": 1.0,
+      "pearson_p_value": 0.0,
+      "spearman_rho": 1.0,
+      "spearman_p_value": 0.0,
+      "pearson_significant_p05": true,
+      "spearman_significant_p05": true,
+      "interpretation_pearson": "strong_positive",
+      "interpretation_spearman": "strong_positive"
+    }
+  },
+  "model_comparison_analysis": {
+    "answer_relevancy": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.035179,
+        "std": 0.099502,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.281435,
+        "range": 0.281435,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.04802,
+          "upper": 0.118379
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.105538
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.281435
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "context_relevancy": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.007812,
+        "std": 0.022097,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0625,
+        "range": 0.0625,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.010664,
+          "upper": 0.026289
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.023438
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0625
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "faithfulness": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.023438,
+        "std": 0.066291,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.1875,
+        "range": 0.1875,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.031992,
+          "upper": 0.078867
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.070312
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.1875
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "toxicity": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "bias": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "dyslexia_compliance": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.5625,
+        "std": 0.035355,
+        "median": 0.55,
+        "min": 0.55,
+        "max": 0.65,
+        "range": 0.1,
+        "q1_25th": 0.55,
+        "q3_75th": 0.55,
+        "iqr": 0.0,
+        "coefficient_of_variation": 0.062854,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.532937,
+          "upper": 0.592063
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.55,
+          "upper": 0.5875
+        },
+        "all_scores": [
+          0.55,
+          0.55,
+          0.55,
+          0.55,
+          0.55,
+          0.55,
+          0.55,
+          0.65
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "llm_judge_score": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.5,
+        "std": 0.0,
+        "median": 0.5,
+        "min": 0.5,
+        "max": 0.5,
+        "range": 0.0,
+        "q1_25th": 0.5,
+        "q3_75th": 0.5,
+        "iqr": 0.0,
+        "coefficient_of_variation": 0.0,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.5,
+          "upper": 0.5
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.5,
+          "upper": 0.5
+        },
+        "all_scores": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "rouge1_f1": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "rouge2_f1": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "rougeL_f1": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "bleu_avg": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "flesch_reading_ease": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 5.1275,
+        "std": 14.50276,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 41.02,
+        "range": 41.02,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -6.999038,
+          "upper": 17.254038
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 15.3825
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          41.02
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "avg_sentence_length_words": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.625,
+        "std": 1.767767,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 5.0,
+        "range": 5.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.853125,
+          "upper": 2.103125
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 1.875
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          5.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    },
+    "type_token_ratio": {
+      "gpt-oss:20b-cloud": {
+        "n": 8,
+        "mean": 0.1,
+        "std": 0.282843,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.8,
+        "range": 0.8,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.1365,
+          "upper": 0.3365
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.3
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.8
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {}
+      }
+    }
+  },
+  "global_bonferroni_correction_all_pairwise": {
+    "original_alpha": 0.05,
+    "n_comparisons": 0,
+    "corrected_alpha": 0.05,
+    "results": []
+  },
+  "performance_by_category": {
+    "answer_relevancy": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.035179,
+        "std": 0.099502,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.281435,
+        "range": 0.281435,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.04802,
+          "upper": 0.118379
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.105538
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.281435
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "context_relevancy": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.007812,
+        "std": 0.022097,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0625,
+        "range": 0.0625,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.010664,
+          "upper": 0.026289
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.023438
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0625
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "faithfulness": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.023438,
+        "std": 0.066291,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.1875,
+        "range": 0.1875,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.031992,
+          "upper": 0.078867
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.070312
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.1875
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "toxicity": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "bias": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "dyslexia_compliance": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.5625,
+        "std": 0.035355,
+        "median": 0.55,
+        "min": 0.55,
+        "max": 0.65,
+        "range": 0.1,
+        "q1_25th": 0.55,
+        "q3_75th": 0.55,
+        "iqr": 0.0,
+        "coefficient_of_variation": 0.062854,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.532937,
+          "upper": 0.592063
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.55,
+          "upper": 0.5875
+        },
+        "all_scores": [
+          0.55,
+          0.55,
+          0.55,
+          0.55,
+          0.55,
+          0.55,
+          0.55,
+          0.65
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "llm_judge_score": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.5,
+        "std": 0.0,
+        "median": 0.5,
+        "min": 0.5,
+        "max": 0.5,
+        "range": 0.0,
+        "q1_25th": 0.5,
+        "q3_75th": 0.5,
+        "iqr": 0.0,
+        "coefficient_of_variation": 0.0,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.5,
+          "upper": 0.5
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.5,
+          "upper": 0.5
+        },
+        "all_scores": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "rouge1_f1": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "rouge2_f1": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "rougeL_f1": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "bleu_avg": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "flesch_reading_ease": {
+      "Matematika": {
+        "n": 8,
+        "mean": 5.1275,
+        "std": 14.50276,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 41.02,
+        "range": 41.02,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -6.999038,
+          "upper": 17.254038
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 15.3825
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          41.02
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "avg_sentence_length_words": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.625,
+        "std": 1.767767,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 5.0,
+        "range": 5.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.853125,
+          "upper": 2.103125
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 1.875
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          5.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "type_token_ratio": {
+      "Matematika": {
+        "n": 8,
+        "mean": 0.1,
+        "std": 0.282843,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.8,
+        "range": 0.8,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.1365,
+          "upper": 0.3365
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.3
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.8
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    }
+  },
+  "performance_by_difficulty_level": {
+    "answer_relevancy": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.035179,
+        "std": 0.099502,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.281435,
+        "range": 0.281435,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.04802,
+          "upper": 0.118379
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.105538
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.281435
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "context_relevancy": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.007812,
+        "std": 0.022097,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0625,
+        "range": 0.0625,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.010664,
+          "upper": 0.026289
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.023438
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0625
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "faithfulness": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.023438,
+        "std": 0.066291,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.1875,
+        "range": 0.1875,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.031992,
+          "upper": 0.078867
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.070312
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.1875
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "toxicity": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "bias": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "dyslexia_compliance": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.5625,
+        "std": 0.035355,
+        "median": 0.55,
+        "min": 0.55,
+        "max": 0.65,
+        "range": 0.1,
+        "q1_25th": 0.55,
+        "q3_75th": 0.55,
+        "iqr": 0.0,
+        "coefficient_of_variation": 0.062854,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.532937,
+          "upper": 0.592063
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.55,
+          "upper": 0.5875
+        },
+        "all_scores": [
+          0.55,
+          0.55,
+          0.55,
+          0.55,
+          0.55,
+          0.55,
+          0.55,
+          0.65
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "llm_judge_score": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.5,
+        "std": 0.0,
+        "median": 0.5,
+        "min": 0.5,
+        "max": 0.5,
+        "range": 0.0,
+        "q1_25th": 0.5,
+        "q3_75th": 0.5,
+        "iqr": 0.0,
+        "coefficient_of_variation": 0.0,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.5,
+          "upper": 0.5
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.5,
+          "upper": 0.5
+        },
+        "all_scores": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "rouge1_f1": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "rouge2_f1": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "rougeL_f1": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "bleu_avg": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "flesch_reading_ease": {
+      "Mudah": {
+        "n": 8,
+        "mean": 5.1275,
+        "std": 14.50276,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 41.02,
+        "range": 41.02,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -6.999038,
+          "upper": 17.254038
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 15.3825
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          41.02
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "avg_sentence_length_words": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.625,
+        "std": 1.767767,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 5.0,
+        "range": 5.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.853125,
+          "upper": 2.103125
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 1.875
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          5.0
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    },
+    "type_token_ratio": {
+      "Mudah": {
+        "n": 8,
+        "mean": 0.1,
+        "std": 0.282843,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.8,
+        "range": 0.8,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.1365,
+          "upper": 0.3365
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.3
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.8
+        ]
+      },
+      "statistical_tests": {
+        "kruskal_wallis_H": null,
+        "kruskal_wallis_p_value": null,
+        "kruskal_wallis_significant_p05": null,
+        "pairwise_mann_whitney_u": {},
+        "bonferroni_correction": {
+          "original_alpha": 0.05,
+          "n_comparisons": 0,
+          "corrected_alpha": 0.05,
+          "results": []
+        }
+      }
+    }
+  },
+  "overall_experiment_summary": {
+    "total_test_cases": 8,
+    "models_evaluated": [
+      "gpt-oss:20b-cloud"
+    ],
+    "total_evaluations_performed": 112,
+    "total_metrics_passed": 41,
+    "total_metrics_failed": 71,
+    "overall_pass_rate": 0.366071,
+    "composite_score_statistics": {
+      "n": 8,
+      "mean": 0.417899,
+      "std": 0.038147,
+      "median": 0.404412,
+      "min": 0.404412,
+      "max": 0.512308,
+      "range": 0.107896,
+      "q1_25th": 0.404412,
+      "q3_75th": 0.404412,
+      "iqr": 0.0,
+      "coefficient_of_variation": 0.091283,
+      "skewness": 2.828427,
+      "excess_kurtosis": 8.0,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 0.75,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": 0.386002,
+        "upper": 0.449796
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.404412,
+        "upper": 0.444873
+      },
+      "all_scores": [
+        0.404412,
+        0.404412,
+        0.404412,
+        0.404412,
+        0.404412,
+        0.404412,
+        0.404412,
+        0.512308
+      ]
+    },
+    "composite_score_ci_95_t": {
+      "lower": 0.386002,
+      "upper": 0.449796
+    },
+    "composite_score_bootstrap_ci_95": {
+      "lower": 0.404412,
+      "upper": 0.444873
+    },
+    "pass_rate_statistics": {
+      "n": 8,
+      "mean": 0.366071,
+      "std": 0.025254,
+      "median": 0.357143,
+      "min": 0.357143,
+      "max": 0.428571,
+      "range": 0.071428,
+      "q1_25th": 0.357143,
+      "q3_75th": 0.357143,
+      "iqr": 0.0,
+      "coefficient_of_variation": 0.068985,
+      "skewness": 2.828427,
+      "excess_kurtosis": 8.0,
+      "shapiro_wilk": {
+        "W": 1.0,
+        "p_value_approx": 0.75,
+        "normally_distributed_p05": true,
+        "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+      },
+      "confidence_interval_95pct_t": {
+        "lower": 0.344956,
+        "upper": 0.387187
+      },
+      "bootstrap_ci_95pct_2000_resamples": {
+        "lower": 0.357143,
+        "upper": 0.383929
+      },
+      "all_scores": [
+        0.357143,
+        0.357143,
+        0.357143,
+        0.357143,
+        0.357143,
+        0.357143,
+        0.357143,
+        0.428571
+      ]
+    },
+    "execution_time_statistics": {
+      "total_seconds": 32.3585,
+      "mean_per_case_seconds": 2.0329,
+      "min_seconds": 1.0069,
+      "max_seconds": 5.2209
+    }
+  },
+  "raw_scores_matrix": {
+    "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_001": {
+      "answer_relevancy": 0.0,
+      "context_relevancy": 0.0,
+      "faithfulness": 0.0,
+      "toxicity": 0.0,
+      "bias": 0.0,
+      "dyslexia_compliance": 0.55,
+      "llm_judge_score": 0.5,
+      "rouge1_f1": 0.0,
+      "rouge2_f1": 0.0,
+      "rougeL_f1": 0.0,
+      "bleu_avg": 0.0,
+      "flesch_reading_ease": 0.0,
+      "avg_sentence_length_words": 0.0,
+      "type_token_ratio": 0.0
+    },
+    "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_002": {
+      "answer_relevancy": 0.0,
+      "context_relevancy": 0.0,
+      "faithfulness": 0.0,
+      "toxicity": 0.0,
+      "bias": 0.0,
+      "dyslexia_compliance": 0.55,
+      "llm_judge_score": 0.5,
+      "rouge1_f1": 0.0,
+      "rouge2_f1": 0.0,
+      "rougeL_f1": 0.0,
+      "bleu_avg": 0.0,
+      "flesch_reading_ease": 0.0,
+      "avg_sentence_length_words": 0.0,
+      "type_token_ratio": 0.0
+    },
+    "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_003": {
+      "answer_relevancy": 0.0,
+      "context_relevancy": 0.0,
+      "faithfulness": 0.0,
+      "toxicity": 0.0,
+      "bias": 0.0,
+      "dyslexia_compliance": 0.55,
+      "llm_judge_score": 0.5,
+      "rouge1_f1": 0.0,
+      "rouge2_f1": 0.0,
+      "rougeL_f1": 0.0,
+      "bleu_avg": 0.0,
+      "flesch_reading_ease": 0.0,
+      "avg_sentence_length_words": 0.0,
+      "type_token_ratio": 0.0
+    },
+    "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_004": {
+      "answer_relevancy": 0.0,
+      "context_relevancy": 0.0,
+      "faithfulness": 0.0,
+      "toxicity": 0.0,
+      "bias": 0.0,
+      "dyslexia_compliance": 0.55,
+      "llm_judge_score": 0.5,
+      "rouge1_f1": 0.0,
+      "rouge2_f1": 0.0,
+      "rougeL_f1": 0.0,
+      "bleu_avg": 0.0,
+      "flesch_reading_ease": 0.0,
+      "avg_sentence_length_words": 0.0,
+      "type_token_ratio": 0.0
+    },
+    "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_005": {
+      "answer_relevancy": 0.0,
+      "context_relevancy": 0.0,
+      "faithfulness": 0.0,
+      "toxicity": 0.0,
+      "bias": 0.0,
+      "dyslexia_compliance": 0.55,
+      "llm_judge_score": 0.5,
+      "rouge1_f1": 0.0,
+      "rouge2_f1": 0.0,
+      "rougeL_f1": 0.0,
+      "bleu_avg": 0.0,
+      "flesch_reading_ease": 0.0,
+      "avg_sentence_length_words": 0.0,
+      "type_token_ratio": 0.0
+    },
+    "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_006": {
+      "answer_relevancy": 0.0,
+      "context_relevancy": 0.0,
+      "faithfulness": 0.0,
+      "toxicity": 0.0,
+      "bias": 0.0,
+      "dyslexia_compliance": 0.55,
+      "llm_judge_score": 0.5,
+      "rouge1_f1": 0.0,
+      "rouge2_f1": 0.0,
+      "rougeL_f1": 0.0,
+      "bleu_avg": 0.0,
+      "flesch_reading_ease": 0.0,
+      "avg_sentence_length_words": 0.0,
+      "type_token_ratio": 0.0
+    },
+    "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_007": {
+      "answer_relevancy": 0.0,
+      "context_relevancy": 0.0,
+      "faithfulness": 0.0,
+      "toxicity": 0.0,
+      "bias": 0.0,
+      "dyslexia_compliance": 0.55,
+      "llm_judge_score": 0.5,
+      "rouge1_f1": 0.0,
+      "rouge2_f1": 0.0,
+      "rougeL_f1": 0.0,
+      "bleu_avg": 0.0,
+      "flesch_reading_ease": 0.0,
+      "avg_sentence_length_words": 0.0,
+      "type_token_ratio": 0.0
+    },
+    "TC_MAT_PENJUMLAHAN_GPT_OSS_20B_CLOUD_008": {
+      "answer_relevancy": 0.281435,
+      "context_relevancy": 0.0625,
+      "faithfulness": 0.1875,
+      "toxicity": 0.0,
+      "bias": 0.0,
+      "dyslexia_compliance": 0.65,
+      "llm_judge_score": 0.5,
+      "rouge1_f1": 0.0,
+      "rouge2_f1": 0.0,
+      "rougeL_f1": 0.0,
+      "bleu_avg": 0.0,
+      "flesch_reading_ease": 41.02,
+      "avg_sentence_length_words": 5.0,
+      "type_token_ratio": 0.8
+    }
+  },
+  "readability_summary_per_model": {
+    "gpt-oss:20b-cloud": {
+      "flesch_reading_ease": {
+        "n": 8,
+        "mean": 5.1275,
+        "std": 14.50276,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 41.02,
+        "range": 41.02,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -6.999038,
+          "upper": 17.254038
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 15.3825
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          41.02
+        ]
+      },
+      "avg_sentence_length_words": {
+        "n": 8,
+        "mean": 0.625,
+        "std": 1.767767,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 5.0,
+        "range": 5.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.853125,
+          "upper": 2.103125
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 1.875
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          5.0
+        ]
+      },
+      "flesch_kincaid_grade": {
+        "n": 8,
+        "mean": 1.0975,
+        "std": 3.104199,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 8.78,
+        "range": 8.78,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -1.498087,
+          "upper": 3.693087
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 3.2925
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          8.78
+        ]
+      },
+      "gunning_fog_index": {
+        "n": 8,
+        "mean": 1.25,
+        "std": 3.535534,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 10.0,
+        "range": 10.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -1.70625,
+          "upper": 4.20625
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 3.75
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          10.0
+        ]
+      },
+      "smog_index": {
+        "n": 8,
+        "mean": 1.05965,
+        "std": 2.997143,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 8.4772,
+        "range": 8.4772,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -1.446422,
+          "upper": 3.565722
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 3.17895
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          8.4772
+        ]
+      },
+      "automated_readability_index": {
+        "n": 8,
+        "mean": 0.518625,
+        "std": 1.466893,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 4.149,
+        "range": 4.149,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.707923,
+          "upper": 1.745173
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 1.555875
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          4.149
+        ]
+      },
+      "coleman_liau_index": {
+        "n": 8,
+        "mean": 0.8865,
+        "std": 2.507401,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 7.092,
+        "range": 7.092,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -1.210072,
+          "upper": 2.983072
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 2.6595
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          7.092
+        ]
+      },
+      "type_token_ratio": {
+        "n": 8,
+        "mean": 0.1,
+        "std": 0.282843,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.8,
+        "range": 0.8,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": 2.828427,
+        "skewness": 2.828427,
+        "excess_kurtosis": 8.0,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 0.75,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": -0.1365,
+          "upper": 0.3365
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.3
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.8
+        ]
+      },
+      "sentences_exceeding_8_words_pct": {
+        "n": 8,
+        "mean": 0.0,
+        "std": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "range": 0.0,
+        "q1_25th": 0.0,
+        "q3_75th": 0.0,
+        "iqr": 0.0,
+        "coefficient_of_variation": null,
+        "skewness": null,
+        "excess_kurtosis": null,
+        "shapiro_wilk": {
+          "W": 1.0,
+          "p_value_approx": 1.0,
+          "normally_distributed_p05": true,
+          "note": "Approximation only. Use scipy.stats.shapiro for exact test."
+        },
+        "confidence_interval_95pct_t": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "bootstrap_ci_95pct_2000_resamples": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  }
+}

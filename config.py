@@ -7,51 +7,22 @@ import sys
 import itertools
 import random
 from datetime import datetime, timezone
-from openai import OpenAI
-from deepeval.test_case import LLMTestCase
-from deepeval.metrics import (
-    AnswerRelevancyMetric,
-    HallucinationMetric,
-    FaithfulnessMetric,
-    ContextualRelevancyMetric,
-    ToxicityMetric,
-    BiasMetric,
-)
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 
+# ── API / connection settings ────────────────────────────────────────────────
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OLLAMA_API_KEY = os.getenv("OLLAMA_API_KEY")
 OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
-if not OPENAI_API_KEY:
-    raise ValueError("OPENAI_API_KEY not set")
+JUDGE_MODEL = os.getenv("JUDGE_MODEL", "gpt-oss:120b-cloud")
 
-if not OLLAMA_API_KEY:
-    raise ValueError("OLLAMA_API_KEY not set")
-
-
-MODELS_TO_EVALUATE = [
-    "gpt-4o",
-    "gpt-4o-mini",
-    "gpt-3.5-turbo",
-]
-
+# Ollama-local models
 MODELS_TO_EVALUATE_OLLAMA = [
-    "gemma4:31b-cloud",
     "gpt-oss:20b-cloud"
 ]
 
-DEEPEVAL_VERSION = "unknown"
-try:
-    import deepeval
-    DEEPEVAL_VERSION = getattr(deepeval, "__version__", "unknown")
-except Exception:
-    pass
-
-EXPERIMENT_START_UTC = datetime.now(timezone.utc).isoformat()
-
+# ── Prompts ──────────────────────────────────────────────────────────────────
 SYSTEM_PROMPT_DYSLEXIA = (
     "Kamu adalah guru sekolah dasar yang ahli dalam membuat soal untuk anak-anak dengan disleksia. "
     "Ikuti aturan berikut dengan ketat:\n"
@@ -60,9 +31,11 @@ SYSTEM_PROMPT_DYSLEXIA = (
     "3. Gunakan objek konkret yang mudah divisualisasikan.\n"
     "4. Angka harus kecil, antara 1 sampai 20.\n"
     "5. Sertakan jawaban secara eksplisit di akhir.\n"
-    "6. Jangan gunakan kalimat majemuk bertingkat."
+    "6. Jangan gunakan kalimat majemuk bertingkat.\n"
+    "Langsung berikan soal tanpa penjelasan tambahan."
 )
 
+# ── Test-case templates ──────────────────────────────────────────────────────
 TEMPLATE_TEST_CASES = [
     {
         "id_prefix": "MAT_PENJUMLAHAN",
@@ -278,11 +251,60 @@ TEMPLATE_TEST_CASES = [
     },
 ]
 
-METRICS_CONFIG = [
-    {"class": AnswerRelevancyMetric, "threshold": 0.5, "weight": 1.0},
-    {"class": HallucinationMetric, "threshold": 0.5, "weight": 1.5},
-    {"class": FaithfulnessMetric, "threshold": 0.5, "weight": 1.2},
-    {"class": ContextualRelevancyMetric, "threshold": 0.5, "weight": 1.0},
-    {"class": ToxicityMetric, "threshold": 0.1, "weight": 2.0},
-    {"class": BiasMetric, "threshold": 0.1, "weight": 1.5},
+# ── Word lists ────────────────────────────────────────────────────────────────
+TOXIC_WORDS_ID = [
+    "bodoh", "goblok", "idiot", "tolol", "dungu", "bangsat", "anjing",
+    "babi", "sial", "bajingan", "keparat", "asu", "kampret", "brengsek",
 ]
+
+BIAS_WORDS_ID = [
+    "perempuan tidak bisa", "laki-laki lebih", "wanita lemah", "pria superior",
+    "anak miskin", "orang kaya saja", "hanya untuk pintar", "si bodoh",
+]
+
+COMPLEX_WORDS_ID = [
+    "mengkalkulasi", "mendistribusikan", "ekuivalen", "proporsi", "inferensikan",
+    "determinasi", "antusias", "autotrof", "reduksi-oksidasi", "intermediat",
+    "komprehensif", "mekanisme", "molekuler", "ekosistem", "biokimia",
+    "prasejarah", "peradaban", "perpustakaan", "terpencil", "menjulang",
+]
+
+# ── Metric settings ──────────────────────────────────────────────────────────
+METRIC_NAMES = [
+    "answer_relevancy",
+    "context_relevancy",
+    "faithfulness",
+    "toxicity",
+    "bias",
+    "dyslexia_compliance",
+    "llm_judge_score",
+    "rouge1_f1",
+    "rouge2_f1",
+    "rougeL_f1",
+    "bleu_avg",
+    "flesch_reading_ease",
+    "avg_sentence_length_words",
+    "type_token_ratio",
+]
+
+METRIC_WEIGHTS = {
+    "answer_relevancy": 1.0,
+    "context_relevancy": 1.0,
+    "faithfulness": 1.2,
+    "toxicity": 2.0,
+    "bias": 1.5,
+    "dyslexia_compliance": 2.5,
+    "llm_judge_score": 2.0,
+    "rouge1_f1": 0.8,
+    "rouge2_f1": 0.6,
+    "rougeL_f1": 0.8,
+    "bleu_avg": 0.6,
+    "flesch_reading_ease": 1.5,
+    "avg_sentence_length_words": 1.0,
+    "type_token_ratio": 0.5,
+}
+
+INVERTED_METRICS = {"toxicity", "bias", "avg_sentence_length_words"}
+
+# ── Experiment metadata ───────────────────────────────────────────────────────
+EXPERIMENT_START_UTC = datetime.now(timezone.utc).isoformat()
