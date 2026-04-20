@@ -39,7 +39,8 @@ MODELS_TO_EVALUATE = [
 ]
 
 MODELS_TO_EVALUATE_OLLAMA = [
-    "gemma4:31b-cloud"
+    "gemma4:31b-cloud",
+    "gpt-oss:20b-cloud"
 ]
 
 DEEPEVAL_VERSION = "unknown"

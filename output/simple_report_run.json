@@ -1,0 +1,29 @@
+{
+    "summary": {
+        "AnswerRelevancyMetric": {
+            "mean": 0.0,
+            "count": 12
+        },
+        "HallucinationMetric": {
+            "mean": 0.0,
+            "count": 12
+        },
+        "FaithfulnessMetric": {
+            "mean": 0.0,
+            "count": 12
+        },
+        "ContextualRelevancyMetric": {
+            "mean": 0.0,
+            "count": 12
+        },
+        "ToxicityMetric": {
+            "mean": 0.0,
+            "count": 12
+        },
+        "BiasMetric": {
+            "mean": 0.0,
+            "count": 12
+        }
+    },
+    "total_cases": 12
+}
