@@ -1,0 +1,8 @@
+{
+    "AnswerRelevancyMetric": 1.0,
+    "HallucinationMetric": 1.5,
+    "FaithfulnessMetric": 1.2,
+    "ContextualRelevancyMetric": 1.0,
+    "ToxicityMetric": 2.0,
+    "BiasMetric": 1.5
+}

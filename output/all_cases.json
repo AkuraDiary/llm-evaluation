@@ -1,0 +1,266 @@
+[
+    {
+        "id": "TC_MAT_PENGURANGAN_GEMMA4:31B_CLOUD_001",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "gemma4:31b-cloud",
+        "input": "Buatkan 1 soal pengurangan sederhana untuk anak disleksia bertema buah jeruk beserta jawabannya.",
+        "actual_output": "Budi punya 5 jeruk.\nBudi makan 2 jeruk.\nBerapa sisa jeruk Budi?\n\nJawaban: 3 jeruk.",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_GEMMA4:31B_CLOUD_002",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "gemma4:31b-cloud",
+        "input": "Buat soal pengurangan untuk anak disleksia dengan tema buku.",
+        "actual_output": "[ERROR: prompt too long; exceeded max context length by 65521 tokens (ref: 485353d5-bac1-489d-916b-d6ceade0a343) (status code: 400)]",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_GEMMA4:31B_CLOUD_003",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "gemma4:31b-cloud",
+        "input": "Buatkan soal pengurangan bertema kue untuk anak disleksia kelas 2 SD.",
+        "actual_output": "[ERROR: prompt too long; exceeded max context length by 65521 tokens (ref: d7e0304a-229e-4288-85af-638e8249f89b) (status code: 400)]",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_GEMMA4:31B_CLOUD_004",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "gemma4:31b-cloud",
+        "input": "Buat soal pengurangan sederhana bertema telur ayam untuk anak disleksia.",
+        "actual_output": "[ERROR: prompt too long; exceeded max context length by 65521 tokens (ref: 4706701c-6912-44d6-8f16-f0aae5ae9211) (status code: 400)]",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_GEMMA4:31B_CLOUD_005",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "gemma4:31b-cloud",
+        "input": "Buatkan soal pengurangan untuk anak disleksia dengan tema balon ulang tahun.",
+        "actual_output": "[ERROR: prompt too long; exceeded max context length by 65522 tokens (ref: b93e380c-bb6a-40da-a1cd-d3046db347cc) (status code: 400)]",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_GEMMA4:31B_CLOUD_006",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "gemma4:31b-cloud",
+        "input": "Buat 1 soal pengurangan bertema burung di pohon untuk anak disleksia.",
+        "actual_output": "[ERROR: prompt too long; exceeded max context length by 65521 tokens (ref: 1ddb627e-e869-4343-a02f-64373fb4e562) (status code: 400)]",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_GPT_OSS:20B_CLOUD_001",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "gpt-oss:20b-cloud",
+        "input": "Buatkan 1 soal pengurangan sederhana untuk anak disleksia bertema buah jeruk beserta jawabannya.",
+        "actual_output": "Ada 6 jeruk.  \nAmbil 3 jeruk.  \nBerapa tersisa?  \nJawaban: 3 jeruk.",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_GPT_OSS:20B_CLOUD_002",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "gpt-oss:20b-cloud",
+        "input": "Buat soal pengurangan untuk anak disleksia dengan tema buku.",
+        "actual_output": "Ada sepuluh buku di rak.  \nTiga buku hilang.  \nBerapa buku tersisa?  \n\nJawaban: tujuh.",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_GPT_OSS:20B_CLOUD_003",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "gpt-oss:20b-cloud",
+        "input": "Buatkan soal pengurangan bertema kue untuk anak disleksia kelas 2 SD.",
+        "actual_output": "Soal pengurangan kue:\n\n1. Ada 12 kue.  \n   Buang 4 kue.  \n   Berapa kue tersisa?\n\n2. Ada 9 kue.  \n   Hapus 5 kue.  \n   Berapa kue tersisa?\n\n3. Ada 15 kue.  \n   Temui 7 kue.  \n   Berapa kue tersisa?\n\n4. Ada 8 kue.  \n   Makan 3 kue.  \n   Berapa kue tersisa?\n\nJawaban:\n1) 8 kue  \n2) 4 kue  \n3) 8 kue  \n4) 5 kue",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_GPT_OSS:20B_CLOUD_004",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "gpt-oss:20b-cloud",
+        "input": "Buat soal pengurangan sederhana bertema telur ayam untuk anak disleksia.",
+        "actual_output": "Ada 12 telur di kotak.  \nMakan 5 telur.  \nBerapa telur tersisa?  \nJawaban: 7 telur.",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_GPT_OSS:20B_CLOUD_005",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "gpt-oss:20b-cloud",
+        "input": "Buatkan soal pengurangan untuk anak disleksia dengan tema balon ulang tahun.",
+        "actual_output": "Ada 12 balon di meja.  \nDibuang 5 balon.  \nBerapa balon tersisa?  \nJawaban: 7.",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_GPT_OSS:20B_CLOUD_006",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "gpt-oss:20b-cloud",
+        "input": "Buat 1 soal pengurangan bertema burung di pohon untuk anak disleksia.",
+        "actual_output": "Ada 10 burung di pohon.  \n3 burung terbang pergi.  \nBerapa burung tersisa?  \nJawab: 7 burung.",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    }
+]

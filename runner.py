@@ -7,6 +7,7 @@ from aggregators import group_by_model
 from aggregators import group_by_metric
 from openai import OpenAI
 from simple_report import build_simple_report
+from academic_report import build_academic_report
 from ollama import Client
 import report_builder
 import json
@@ -56,19 +57,36 @@ def run():
     for model in MODELS_TO_EVALUATE_OLLAMA:
         cases = build_test_cases(client, model, TEMPLATE_TEST_CASES[1:2], use_ollama=True)
         all_cases.extend(cases)
-
+    
+    # (
+    #     all_test_case_results,
+    #     raw_scores_by_metric,
+    #     scores_by_category,
+    #     scores_by_difficulty,
+    #     scores_by_model,
+    # ) = evaluate_test_cases(all_cases, weights, metrics)
+    
+    # aggregate_statistics = compute_aggregate_statistics(raw_scores_by_metric)
+    # metric_correlation_matrix = compute_correlation_matrix(raw_scores_by_metric)
+    # model_comparison = compute_model_comparison(scores_by_model)
+    # performance_by_category = compute_category_performance(scores_by_category)
+    # performance_by_difficulty = compute_difficulty_performance(scores_by_difficulty)
+    json_exporter(all_cases, "all_cases.json")
     results = evaluate_test_cases(all_cases, weights, metrics)
 
-    grouped = group_by_metric(results)
+    # grouped = group_by_metric(results)
 
-    report = ""
-    if USE_ACADEMIC_REPORT:
-        print("working on it")
-        # report = build_academic_report()
-    else:
-        report = build_simple_report(results, grouped)
+    # report = ""
+    # if USE_ACADEMIC_REPORT:
+    #     # print("working on it")
+    #     report = build_academic_report(
+    #         all_test_case_results,
+            
+    #     )
+    # else:
+        # report = build_simple_report(results, grouped)
 
-    json_exporter(report, "simple_report_run.json")
+    json_exporter(results, "all_test_case_result.json")
 
 
 
