@@ -225,7 +225,6 @@ def run():
     print(f"  Overall pass rate : {round(total_passed / total_evals * 100, 2) if total_evals else 0}%")
     print(f"  Composite mean    : {round(safe_mean(all_composite), 4) if all_composite else 'N/A'}")
     print(f"  Total waktu       : {total_time} detik")
-    print(f"  Biaya API         : $0.00 (Ollama lokal)")
     print(f"{'=' * 65}")
 
 
