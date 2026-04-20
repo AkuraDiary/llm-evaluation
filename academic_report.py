@@ -19,9 +19,3 @@ def build_academic_report(
         "performance_by_difficulty_level": performance_by_difficulty,
     }
     
-def export_academic_report(output_document):
-    output_path = "output/evaluasi_llm_disleksia_scopus_q1_final.json"
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(output_document, f, indent=4, ensure_ascii=False)
-
-    print(f"Hasil disimpan di: {output_path}")

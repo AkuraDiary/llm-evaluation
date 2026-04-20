@@ -9,6 +9,8 @@ from openai import OpenAI
 from simple_report import build_simple_report
 from ollama import Client
 import report_builder
+import json
+from util import json_exporter
 from config import OPENAI_API_KEY, OLLAMA_API_KEY, OLLAMA_HOST
 
 client = OpenAI(api_key=OPENAI_API_KEY)
@@ -29,14 +31,14 @@ def create_metrics():
     ]
 
 def run_generation_only():
-    client = client
+    client = ollama_client
     model = MODELS_TO_EVALUATE_OLLAMA[0]
 
     test_cases = build_test_cases(
         client,
         model,
-        TEMPLATE_TEST_CASES[0],
-        use_ollama=False
+        TEMPLATE_TEST_CASES[1:2],
+        use_ollama=True
     )
 
     return test_cases
@@ -52,7 +54,7 @@ def run():
     all_cases = []
 
     for model in MODELS_TO_EVALUATE_OLLAMA:
-        cases = build_test_cases(client, model, TEMPLATE_TEST_CASES[1:4], use_ollama=True)
+        cases = build_test_cases(client, model, TEMPLATE_TEST_CASES[1:2], use_ollama=True)
         all_cases.extend(cases)
 
     results = evaluate_test_cases(all_cases, weights, metrics)
@@ -66,10 +68,9 @@ def run():
     else:
         report = build_simple_report(results, grouped)
 
-    print(report)
+    json_exporter(report, "simple_report_run.json")
 
-    print(report)
 
 
 if __name__ == "__main__":
-    run()
+    print(run_generation_only())
