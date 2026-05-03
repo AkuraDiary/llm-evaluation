@@ -27,9 +27,14 @@ MODELS_TO_EVALUATE_OLLAMA = [
 ]
 
 DESIRED_OUTPUT_FORMAT = (
-    "Soal:\n"
-    "Jawaban:\n"
-    "Alur Berpikir:\n"
+    "soal:\n"
+    "jawaban:\n"
+    "alur_berpikir:\n"
+    # "{"
+    # "\"soal\" :\n"
+    # "\"jawaban\" :\n"
+    # "\"alur_berpikir\" :\n"
+    # "}"
     )
 # ── Prompts ──────────────────────────────────────────────────────────────────
 SYSTEM_PROMPT_DYSLEXIA = (
@@ -41,10 +46,7 @@ SYSTEM_PROMPT_DYSLEXIA = (
     "4. Angka harus kecil, antara 1 sampai 20.\n"
     "5. Sertakan jawaban secara eksplisit di akhir.\n"
     "6. Jangan gunakan kalimat majemuk bertingkat.\n"
-    "Langsung berikan pasangan dari key-value terdiri dari:\n"
-    "Soal:\n"
-    "Jawaban:\n"
-    "Alur Berpikir:\n"
+    f"Langsung berikan output sesuai format berikut \n : {DESIRED_OUTPUT_FORMAT}"
 )
 
 # ── Test-case templates ──────────────────────────────────────────────────────
