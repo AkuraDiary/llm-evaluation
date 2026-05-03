@@ -301,27 +301,21 @@ def call_llm(client, model, prompt):
     except Exception as e:
         return f"[ERROR: {str(e)}]"
 
-
 def build_test_cases(client, model):
     test_cases = []
-    case_counter = {}
 
+    # ── user simulation (prompts array) ──────────────
     for template in TEMPLATE_TEST_CASES:
-        prefix = template["id_prefix"]
-        case_counter[prefix] = 0
-        for prompt in template["prompts"]:
-            case_counter[prefix] += 1
-            tc_id = f"TC_{prefix}_{model.replace('-', '_').upper()}_{case_counter[prefix]:03d}"
-
+        for i, prompt in enumerate(template["prompts"], 1):
+            tc_id = f"TC_{template['id_prefix']}_USER_{model}_{i:03d}"
             actual_output = call_llm(client, model, prompt)
-            time.sleep(0.5)
-
             test_cases.append({
                 "id": tc_id,
                 "category": template["category"],
                 "sub_category": template["sub_category"],
                 "difficulty_level": template["difficulty_level"],
-                "model": model,
+                "track": "user_simulation",       
+                "prompt_strategy": "natural",
                 "input": prompt,
                 "actual_output": actual_output,
                 "expected_output": template["expected_output"],
@@ -329,7 +323,59 @@ def build_test_cases(client, model):
                 "retrieval_context": template["context"],
             })
 
+    # ── structured_prompts ──────────
+    for template in TEMPLATE_TEST_CASES:
+        sp = template.get("structured_prompts", {})
+        for strategy, prompt in sp.items():
+            if not prompt:
+                continue
+            tc_id = f"TC_{template['id_prefix']}_{strategy.upper()}_{model}"
+            actual_output = call_llm(client, model, prompt)
+            test_cases.append({
+                "id": tc_id,
+                "category": template["category"],
+                "sub_category": template["sub_category"],
+                "difficulty_level": template["difficulty_level"],
+                "track": "research",        
+                "prompt_strategy": strategy,       # zero_shot / few_shot / cot / hybrid
+                "input": prompt,
+                "actual_output": actual_output,
+                "expected_output": template["expected_output"],
+                "context": template["context"],
+                "retrieval_context": template["context"],
+                
+            })
+
     return test_cases
+
+# def build_test_cases(client, model):
+#     test_cases = []
+#     case_counter = {}
+
+#     for template in TEMPLATE_TEST_CASES:
+#         prefix = template["id_prefix"]
+#         case_counter[prefix] = 0
+#         for prompt in template["prompts"]:
+#             case_counter[prefix] += 1
+#             tc_id = f"TC_{prefix}_{model.replace('-', '_').upper()}_{case_counter[prefix]:03d}"
+
+#             actual_output = call_llm(client, model, prompt)
+#             time.sleep(0.5)
+
+#             test_cases.append({
+#                 "id": tc_id,
+#                 "category": template["category"],
+#                 "sub_category": template["sub_category"],
+#                 "difficulty_level": template["difficulty_level"],
+#                 "model": model,
+#                 "input": prompt,
+#                 "actual_output": actual_output,
+#                 "expected_output": template["expected_output"],
+#                 "context": template["context"],
+                # "retrieval_context": template["context"],
+#             })
+
+#     return test_cases
 
 
 def safe_mean(values):

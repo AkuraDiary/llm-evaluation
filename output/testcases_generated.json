@@ -1,0 +1,134 @@
+[
+    {
+        "id": "TC_MAT_PENGURANGAN_MINISTRAL_3_14B_CLOUD_001",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "ministral-3:14b-cloud",
+        "input": "Buatkan 1 soal pengurangan sederhana untuk anak disleksia bertema buah jeruk beserta jawabannya.",
+        "actual_output": "**Soal:**\nAda 7 jeruk.\nDibuat jus 3 jeruk.\nBerapa jeruk tersisa?\n\n**Jawaban:**\n4 jeruk.\n\n---\n**Visual sederhana (opsional untuk gambar):**\n🍊🍊🍊🍊🍊🍊🍊\n→ (3 diarsir atau dihilangkan)\n🍊🍊🍊🍊",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_MINISTRAL_3_14B_CLOUD_002",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "ministral-3:14b-cloud",
+        "input": "Buat soal pengurangan untuk anak disleksia dengan tema buku.",
+        "actual_output": "**Soal:**\n\n1. Ada 10 buku.\n   Diambil 3 buku.\n   Buku tersisa berapa?\n\n2. Buku di rak ada 15.\n   Dibaca 7 buku.\n   Buku yang tidak dibaca berapa?\n\n3. Buku cerita ada 9.\n   Diberikan 2 buku.\n   Buku yang tinggal berapa?\n\n4. Rak buku punya 12 buku.\n   Diambil 4 buku.\n   Buku yang ada sekarang berapa?\n\n5. Ada 8 buku gambar.\n   Dipinjam 5 buku.\n   Buku yang masih ada berapa?\n\n---\n**Jawaban:**\n1. 7\n2. 8\n3. 7\n4. 8\n5. 3",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_MINISTRAL_3_14B_CLOUD_003",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "ministral-3:14b-cloud",
+        "input": "Buatkan soal pengurangan bertema kue untuk anak disleksia kelas 2 SD.",
+        "actual_output": "**Soal:**\n\n1. Ada 10 kue coklat.\n   Dibeli 3 kue.\n   Berapa kue tersisa?\n   _______\n\n2. Bu Rina punya 15 kue pisang.\n   Diberikan 5 kue.\n   Sisa kue berapa?\n   _______\n\n3. Toko kue ada 9 kue bolu.\n   Dijual 4 kue.\n   Kue tinggal berapa?\n   _______\n\n4. Ani bikin 12 kue lapis.\n   Dimakan 6 kue.\n   Kue sisa berapa?\n   _______\n\n5. Pak Budi jual 8 kue kering.\n   Dibeli 2 kue.\n   Tersisa berapa kue?\n   _______\n\n---\n**Jawaban:**\n1. 7\n2. 10\n3. 5\n4. 6\n5. 6",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_MINISTRAL_3_14B_CLOUD_004",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "ministral-3:14b-cloud",
+        "input": "Buat soal pengurangan sederhana bertema telur ayam untuk anak disleksia.",
+        "actual_output": "**Soal:**\n\n1. Ada 10 telur.\n   Pecah 3 telur.\n   Berapa telur yang tidak pecah?\n\n2. Bibi punya 15 telur.\n   Dijual 7 telur.\n   Berapa telur tersisa?\n\n3. Toko jual 5 telur.\n   Mas Ibu beli 9 telur.\n   Berapa telur yang dibeli?\n\n4. Di keranjang ada 8 telur.\n   Diambil 2 telur.\n   Berapa telur di keranjang sekarang?\n\n5. Ayah beli 12 telur.\n   Dibuat 4 telur orak-arik.\n   Berapa telur biasa?\n\n---\n**Jawaban:**\n1. 7 telur\n2. 8 telur\n3. 9 telur\n4. 6 telur\n5. 8 telur",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_MINISTRAL_3_14B_CLOUD_005",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "ministral-3:14b-cloud",
+        "input": "Buatkan soal pengurangan untuk anak disleksia dengan tema balon ulang tahun.",
+        "actual_output": "**Soal:**\n\n1. Ada 10 balon.\n   3 balon pecah.\n   Berapa balon tersisa?\n\n2. Budi punya 15 balon.\n   Dia berikan 7 balon teman.\n   Budi punya berapa balon sekarang?\n\n3. Ibu membeli 9 balon.\n   4 balon terlepas angin.\n   Berapa balon masih baik?\n\n4. Lani mengikat 12 balon.\n   5 balon terjatuh.\n   Berapa balon masih di tangan Lani?\n\n5. Pak RT berikan 8 balon.\n   2 balon sobek.\n   Berapa balon utuh?\n\n---\n**Jawaban:**\n1. 7 balon\n2. 8 balon\n3. 5 balon\n4. 7 balon\n5. 6 balon",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    },
+    {
+        "id": "TC_MAT_PENGURANGAN_MINISTRAL_3_14B_CLOUD_006",
+        "category": "Matematika",
+        "sub_category": "Pengurangan",
+        "difficulty_level": "Mudah",
+        "model": "ministral-3:14b-cloud",
+        "input": "Buat 1 soal pengurangan bertema burung di pohon untuk anak disleksia.",
+        "actual_output": "**Soal:**\nPohon ada 7 burung.\n2 burung terbang pergi.\nBerapa burung tinggal?\n\n**Jawaban:** 5 burung.",
+        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ],
+        "retrieval_context": [
+            "Gunakan cerita konkret dalam kehidupan sehari-hari.",
+            "Kalimat tidak boleh lebih dari 8 kata.",
+            "Angka antara 1 sampai 10 yang mudah dibayangkan.",
+            "Jawaban harus ditampilkan secara eksplisit dengan persamaan."
+        ]
+    }
+]

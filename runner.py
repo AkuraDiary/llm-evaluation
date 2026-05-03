@@ -3,7 +3,7 @@ import sys
 import time
 import platform
 from datetime import datetime, timezone
-
+from util import json_exporter
 from ollama import Client as OllamaClient
 
 from config import (
@@ -211,9 +211,7 @@ def run():
     }
 
     # ── 7. Export ─────────────────────────────────────────────────────────────
-    output_path = "evaluasi_ollama_llm_disleksia.json"
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(output_doc, f, indent=2, ensure_ascii=False)
+    json_exporter(output_doc, "evaluasi_ollama_llm_disleksia.json")
 
     print(f"\n{'=' * 65}")
     print(f"  Evaluasi selesai!")
@@ -226,7 +224,6 @@ def run():
     print(f"  Composite mean    : {round(safe_mean(all_composite), 4) if all_composite else 'N/A'}")
     print(f"  Total waktu       : {total_time} detik")
     print(f"{'=' * 65}")
-
 
 if __name__ == "__main__":
     run()
