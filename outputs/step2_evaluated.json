@@ -1,0 +1,3515 @@
+{
+  "step": "evaluate",
+  "timestamp_utc": "2026-05-03T10:42:44.488478+00:00",
+  "judge_model": "gpt-oss:120b-cloud",
+  "evaluation_time_seconds": 10.9238,
+  "models_evaluated": [
+    "ministral-3:14b-cloud"
+  ],
+  "generator_system_prompt": "Kamu adalah guru sekolah dasar yang ahli dalam membuat soal untuk anak-anak dengan disleksia. Ikuti aturan berikut dengan ketat:\n1. Gunakan kalimat sangat pendek, maksimal 8 kata per kalimat.\n2. Gunakan kata-kata sederhana sehari-hari, hindari istilah teknis.\n3. Gunakan objek konkret yang mudah divisualisasikan.\n4. Angka harus kecil, antara 1 sampai 20.\n5. Sertakan jawaban secara eksplisit di akhir.\n6. Jangan gunakan kalimat majemuk bertingkat.\nLangsung berikan pasangan dari key-value terdiri dari:\nSoal:\nJawaban:\nAlur Berpikir:\n",
+  "total_test_cases": 12,
+  "test_cases": [
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_001",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "ministral-3:14b-cloud",
+      "input_prompt": "Buatkan 1 soal matematika penjumlahan sederhana untuk anak disleksia dengan tema buah apel beserta jawabannya.",
+      "actual_output": "**Soal:**\nAda 5 apel.\nTambah 3 apel lagi.\nBerapa apel sekarang?\n\n---\n**Jawaban:**\n8 apel.\n\n---\n**Alur Berpikir:**\n1. Ada 5 apel di meja.\n2. Saya tambah 3 apel lagi.\n3. Hitung: 5 + 3 = 8.\n4. Jadi, ada **8 apel** sekarang.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.269231,
+          "normalized_score": 0.269231,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.269231
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.05102,
+          "normalized_score": 0.05102,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.05102
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.142857,
+          "normalized_score": 0.142857,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.171428
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.85,
+          "normalized_score": 0.85,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 2.125
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.166667,
+          "normalized_score": 0.166667,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.133334
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.034483,
+          "normalized_score": 0.034483,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.02069
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.133333,
+          "normalized_score": 0.133333,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.106666
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.058085,
+          "normalized_score": 0.058085,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.034851
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 56.0286,
+          "normalized_score": 0.560286,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.840429
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 3.25,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.538462,
+          "normalized_score": 0.538462,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.269231
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.128205,
+        "rouge1_recall": 0.238095,
+        "rouge1_f1": 0.166667,
+        "rouge2_precision": 0.026316,
+        "rouge2_recall": 0.05,
+        "rouge2_f1": 0.034483,
+        "rougeL_precision": 0.102564,
+        "rougeL_recall": 0.190476,
+        "rougeL_f1": 0.133333
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.128205,
+        "bleu2": 0.026316,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.058085
+      },
+      "readability_analysis": {
+        "total_chars": 190,
+        "total_words": 39,
+        "total_sentences": 12,
+        "total_syllables": 68,
+        "avg_word_length_chars": 4.8718,
+        "avg_sentence_length_words": 3.25,
+        "avg_syllables_per_word": 1.7436,
+        "flesch_reading_ease": 56.0286,
+        "flesch_kincaid_grade": 6.2519,
+        "gunning_fog_index": 6.4282,
+        "smog_index": 6.5355,
+        "automated_readability_index": 3.1412,
+        "coleman_liau_index": 3.7385,
+        "type_token_ratio": 0.538462,
+        "lexical_diversity": 0.538462,
+        "max_sentence_length_words": 5,
+        "min_sentence_length_words": 1,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": true,
+        "has_question_mark": true,
+        "numeric_count": 13,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.560111,
+        "total_metrics": 14,
+        "metrics_passed": 6,
+        "metrics_failed": 8,
+        "pass_rate": 0.428571,
+        "dyslexia_compliance_score": 0.85,
+        "execution_time_seconds": 0.9429
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_002",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "ministral-3:14b-cloud",
+      "input_prompt": "Buatkan 1 soal penjumlahan untuk anak disleksia bertema bola mainan beserta jawabannya.",
+      "actual_output": "**Soal:**\nAda 5 bola merah.\nTambah 3 bola biru.\nBerapa bola sekarang?\n\n**Jawaban:**\n8 bola.\n\n**Alur Berpikir:**\n1. Lihat bola merah: **5**.\n2. Tambah bola biru: **3**.\n3. Hitung bersama: 5 + 3 = **8**.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.321818,
+          "normalized_score": 0.321818,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.321818
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.05814,
+          "normalized_score": 0.05814,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.05814
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.157895,
+          "normalized_score": 0.157895,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.189474
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.85,
+          "normalized_score": 0.85,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 2.125
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.185185,
+          "normalized_score": 0.185185,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.148148
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.038462,
+          "normalized_score": 0.038462,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.023077
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.148148,
+          "normalized_score": 0.148148,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.118518
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.06881,
+          "normalized_score": 0.06881,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.041286
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 52.231,
+          "normalized_score": 0.52231,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.783465
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 3.3,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.575758,
+          "normalized_score": 0.575758,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.287879
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.151515,
+        "rouge1_recall": 0.238095,
+        "rouge1_f1": 0.185185,
+        "rouge2_precision": 0.03125,
+        "rouge2_recall": 0.05,
+        "rouge2_f1": 0.038462,
+        "rougeL_precision": 0.121212,
+        "rougeL_recall": 0.190476,
+        "rougeL_f1": 0.148148
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.151515,
+        "bleu2": 0.03125,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.06881
+      },
+      "readability_analysis": {
+        "total_chars": 176,
+        "total_words": 33,
+        "total_sentences": 10,
+        "total_syllables": 59,
+        "avg_word_length_chars": 5.3333,
+        "avg_sentence_length_words": 3.3,
+        "avg_syllables_per_word": 1.7879,
+        "flesch_reading_ease": 52.231,
+        "flesch_kincaid_grade": 6.794,
+        "gunning_fog_index": 7.3806,
+        "smog_index": 6.873,
+        "automated_readability_index": 5.34,
+        "coleman_liau_index": 6.5903,
+        "type_token_ratio": 0.575758,
+        "lexical_diversity": 0.575758,
+        "max_sentence_length_words": 5,
+        "min_sentence_length_words": 1,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": true,
+        "has_question_mark": true,
+        "numeric_count": 11,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.564518,
+        "total_metrics": 14,
+        "metrics_passed": 6,
+        "metrics_failed": 8,
+        "pass_rate": 0.428571,
+        "dyslexia_compliance_score": 0.85,
+        "execution_time_seconds": 0.9181
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_003",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "ministral-3:14b-cloud",
+      "input_prompt": "Buatkan soal penjumlahan sederhana bertema kelereng untuk anak disleksia kelas 1 SD.",
+      "actual_output": "**Soal:**\n\n1. **Ada 5 kelereng merah.**\n   **Tambah 3 kelereng biru.**\n   Berapa kelereng sekarang?\n\n2. **Lina punya 7 kelereng.**\n   **Ibu beri 2 kelereng lagi.**\n   Berapa kelereng Lina sekarang?\n\n3. **Budi main kelereng.**\n   **Dia punya 4 kelereng.**\n   **Teman beri 6 kelereng.**\n   Berapa kelereng Budi sekarang?\n\n4. **Ada 9 kelereng di meja.**\n   **Dina ambil 2 kelereng.**\n   Berapa kelereng tinggal?\n\n5. **Siti punya 10 kelereng.**\n   **Dia berikan 3 kelereng.**\n   Berapa kelereng Siti sekarang?\n\n---\n\n**Jawaban:**\n\n1. **8 kelereng**\n2. **9 kelereng**\n3. **10 kelereng**\n4. **7 kelereng**\n5. **7 kelereng**\n\n---\n**Alur Berpikir:**\n\n1. **5 + 3 = ?**\n   → Hitung 5 lalu tambah 3.\n   → 5, 6, 7, **8**.\n\n2. **7 + 2 = ?**\n   → Hitung 7 lalu tambah 2.\n   → 7",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.13,
+          "normalized_score": 0.13,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.13
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.031779,
+          "normalized_score": 0.031779,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.031779
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.115385,
+          "normalized_score": 0.115385,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.138462
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.85,
+          "normalized_score": 0.85,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 2.125
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.093023,
+          "normalized_score": 0.093023,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.074418
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.015748,
+          "normalized_score": 0.015748,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.009449
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.093023,
+          "normalized_score": 0.093023,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.074418
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.022786,
+          "normalized_score": 0.022786,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.013672
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 43.8109,
+          "normalized_score": 0.438109,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.657164
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 3.1765,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.361111,
+          "normalized_score": 0.361111,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.180556
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.055556,
+        "rouge1_recall": 0.285714,
+        "rouge1_f1": 0.093023,
+        "rouge2_precision": 0.009346,
+        "rouge2_recall": 0.05,
+        "rouge2_f1": 0.015748,
+        "rougeL_precision": 0.055556,
+        "rougeL_recall": 0.285714,
+        "rougeL_f1": 0.093023
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.055556,
+        "bleu2": 0.009346,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.022786
+      },
+      "readability_analysis": {
+        "total_chars": 629,
+        "total_words": 108,
+        "total_sentences": 34,
+        "total_syllables": 204,
+        "avg_word_length_chars": 5.8241,
+        "avg_sentence_length_words": 3.1765,
+        "avg_syllables_per_word": 1.8889,
+        "flesch_reading_ease": 43.8109,
+        "flesch_kincaid_grade": 7.9377,
+        "gunning_fog_index": 13.4928,
+        "smog_index": 8.3961,
+        "automated_readability_index": 7.5896,
+        "coleman_liau_index": 9.127,
+        "type_token_ratio": 0.361111,
+        "lexical_diversity": 0.361111,
+        "max_sentence_length_words": 5,
+        "min_sentence_length_words": 1,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": true,
+        "has_question_mark": true,
+        "numeric_count": 40,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.525583,
+        "total_metrics": 14,
+        "metrics_passed": 5,
+        "metrics_failed": 9,
+        "pass_rate": 0.357143,
+        "dyslexia_compliance_score": 0.85,
+        "execution_time_seconds": 0.9245
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_004",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "ministral-3:14b-cloud",
+      "input_prompt": "Buat 1 soal penjumlahan anak disleksia bertema pensil dengan jawaban yang jelas.",
+      "actual_output": "**Soal:**\nAda **3** pensil di meja.\nIbu tambah **4** pensil lagi.\nBerapa pensil sekarang?\n\n---\n**Jawaban:**\n**7** pensil.\n\n---\n**Alur Berpikir:**\n1. Lihat **3** pensil di meja.\n2. Ibu tambah **4** pensil.\n3. Hitung: **3** + **4** = **7**.\n4. Jawab: **7** pensil di meja.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.370824,
+          "normalized_score": 0.370824,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.370824
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.02451,
+          "normalized_score": 0.02451,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.02451
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.071429,
+          "normalized_score": 0.071429,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.085715
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.93,
+          "normalized_score": 0.93,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 2.325
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.16129,
+          "normalized_score": 0.16129,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.129032
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.033333,
+          "normalized_score": 0.033333,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.02
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.129032,
+          "normalized_score": 0.129032,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.103226
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.055216,
+          "normalized_score": 0.055216,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.03313
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 60.9915,
+          "normalized_score": 0.609915,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.914872
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 3.4167,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.512195,
+          "normalized_score": 0.512195,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.256097
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.121951,
+        "rouge1_recall": 0.238095,
+        "rouge1_f1": 0.16129,
+        "rouge2_precision": 0.025,
+        "rouge2_recall": 0.05,
+        "rouge2_f1": 0.033333,
+        "rougeL_precision": 0.097561,
+        "rougeL_recall": 0.190476,
+        "rougeL_f1": 0.129032
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.121951,
+        "bleu2": 0.025,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.055216
+      },
+      "readability_analysis": {
+        "total_chars": 238,
+        "total_words": 41,
+        "total_sentences": 12,
+        "total_syllables": 69,
+        "avg_word_length_chars": 5.8049,
+        "avg_sentence_length_words": 3.4167,
+        "avg_syllables_per_word": 1.6829,
+        "flesch_reading_ease": 60.9915,
+        "flesch_kincaid_grade": 5.601,
+        "gunning_fog_index": 5.2691,
+        "smog_index": 6.1623,
+        "automated_readability_index": 7.6193,
+        "coleman_liau_index": 9.6693,
+        "type_token_ratio": 0.512195,
+        "lexical_diversity": 0.512195,
+        "max_sentence_length_words": 6,
+        "min_sentence_length_words": 1,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": true,
+        "has_question_mark": true,
+        "numeric_count": 13,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.574259,
+        "total_metrics": 14,
+        "metrics_passed": 6,
+        "metrics_failed": 8,
+        "pass_rate": 0.428571,
+        "dyslexia_compliance_score": 0.93,
+        "execution_time_seconds": 0.8449
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_005",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "ministral-3:14b-cloud",
+      "input_prompt": "Buat 1 soal penjumlahan untuk anak disleksia dengan tema ikan di akuarium.",
+      "actual_output": "**Soal:**\nAkuarium ada 5 ikan emas.\nTambah 3 ikan cupang.\nBanyak ikan sekarang?\n\n---\n**Jawaban:**\n8 ikan.\n\n---\n**Alur Berpikir:**\n1. Lihat ikan emas: 5.\n2. Lihat ikan cupang: 3.\n3. Tambah 5 + 3.\n4. Hasilnya adalah 8.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.375,
+          "normalized_score": 0.375,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.375
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.054348,
+          "normalized_score": 0.054348,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.054348
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.142857,
+          "normalized_score": 0.142857,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.171428
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.85,
+          "normalized_score": 0.85,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 2.125
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.175439,
+          "normalized_score": 0.175439,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.140351
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.036364,
+          "normalized_score": 0.036364,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.021818
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.140351,
+          "normalized_score": 0.140351,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.112281
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.062994,
+          "normalized_score": 0.062994,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.037796
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 51.04,
+          "normalized_score": 0.5104,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.7656
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 3.0,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.583333,
+          "normalized_score": 0.583333,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.291666
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.138889,
+        "rouge1_recall": 0.238095,
+        "rouge1_f1": 0.175439,
+        "rouge2_precision": 0.028571,
+        "rouge2_recall": 0.05,
+        "rouge2_f1": 0.036364,
+        "rougeL_precision": 0.111111,
+        "rougeL_recall": 0.190476,
+        "rougeL_f1": 0.140351
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.138889,
+        "bleu2": 0.028571,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.062994
+      },
+      "readability_analysis": {
+        "total_chars": 190,
+        "total_words": 36,
+        "total_sentences": 12,
+        "total_syllables": 65,
+        "avg_word_length_chars": 5.2778,
+        "avg_sentence_length_words": 3.0,
+        "avg_syllables_per_word": 1.8056,
+        "flesch_reading_ease": 51.04,
+        "flesch_kincaid_grade": 6.8856,
+        "gunning_fog_index": 7.8667,
+        "smog_index": 6.873,
+        "automated_readability_index": 4.9283,
+        "coleman_liau_index": 5.3667,
+        "type_token_ratio": 0.583333,
+        "lexical_diversity": 0.583333,
+        "max_sentence_length_words": 6,
+        "min_sentence_length_words": 1,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": true,
+        "has_question_mark": true,
+        "numeric_count": 12,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.564429,
+        "total_metrics": 14,
+        "metrics_passed": 6,
+        "metrics_failed": 8,
+        "pass_rate": 0.428571,
+        "dyslexia_compliance_score": 0.85,
+        "execution_time_seconds": 0.8926
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_006",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "ministral-3:14b-cloud",
+      "input_prompt": "Buatkan 1 soal penjumlahan bertema bunga di taman untuk anak disleksia.",
+      "actual_output": "**Soal:**\nTaman ada 5 bunga merah.\nTeman membawa 3 bunga biru lagi.\nBerapa bunga di taman sekarang?\n\n---\n**Jawaban:**\n8 bunga.\n\n---\n**Alur Berpikir:**\n1. Ada 5 bunga merah → tulis angka **5**.\n2. Ditambah 3 bunga biru → tambah **3**.\n3. 5 + 3 = **8**.\n4. Jawab: **8 bunga**.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.442856,
+          "normalized_score": 0.442856,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.442856
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.068182,
+          "normalized_score": 0.068182,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.068182
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.173077,
+          "normalized_score": 0.173077,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.207692
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.85,
+          "normalized_score": 0.85,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 2.125
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.181818,
+          "normalized_score": 0.181818,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.145454
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.03125,
+          "normalized_score": 0.03125,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.01875
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.121212,
+          "normalized_score": 0.121212,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.09697
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.055048,
+          "normalized_score": 0.055048,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.033029
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 54.5088,
+          "normalized_score": 0.545088,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.817632
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 3.75,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.577778,
+          "normalized_score": 0.577778,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.288889
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.133333,
+        "rouge1_recall": 0.285714,
+        "rouge1_f1": 0.181818,
+        "rouge2_precision": 0.022727,
+        "rouge2_recall": 0.05,
+        "rouge2_f1": 0.03125,
+        "rougeL_precision": 0.088889,
+        "rougeL_recall": 0.190476,
+        "rougeL_f1": 0.121212
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.133333,
+        "bleu2": 0.022727,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.055048
+      },
+      "readability_analysis": {
+        "total_chars": 236,
+        "total_words": 45,
+        "total_sentences": 12,
+        "total_syllables": 79,
+        "avg_word_length_chars": 5.2444,
+        "avg_sentence_length_words": 3.75,
+        "avg_syllables_per_word": 1.7556,
+        "flesch_reading_ease": 54.5088,
+        "flesch_kincaid_grade": 6.5881,
+        "gunning_fog_index": 6.8333,
+        "smog_index": 6.873,
+        "automated_readability_index": 5.1463,
+        "coleman_liau_index": 7.144,
+        "type_token_ratio": 0.577778,
+        "lexical_diversity": 0.577778,
+        "max_sentence_length_words": 7,
+        "min_sentence_length_words": 1,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": true,
+        "has_question_mark": true,
+        "numeric_count": 15,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.573203,
+        "total_metrics": 14,
+        "metrics_passed": 6,
+        "metrics_failed": 8,
+        "pass_rate": 0.428571,
+        "dyslexia_compliance_score": 0.85,
+        "execution_time_seconds": 0.9217
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_007",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "ministral-3:14b-cloud",
+      "input_prompt": "Buatkan 1 soal penjumlahan sederhana bertema kucing dan anjing untuk anak disleksia.",
+      "actual_output": "**Soal:**\nDi halaman ada 5 kucing.\nTiba-tiba datang 3 anjing.\nBerapa hewan sekarang?\n\n---\n**Jawaban:**\n8 hewan.\n\n---\n**Alur Berpikir:**\n1. Ada 5 kucing di halaman.\n2. Datang 3 anjing lagi.\n3. Jumlahkan kucing dan anjing: 5 + 3 = 8.\n4. Jawab: 8 hewan.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.462698,
+          "normalized_score": 0.462698,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.462698
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.098711,
+          "normalized_score": 0.098711,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.098711
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.1875,
+          "normalized_score": 0.1875,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.225
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.333333,
+          "normalized_score": 0.666667,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.333334
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.85,
+          "normalized_score": 0.85,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 2.125
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.190476,
+          "normalized_score": 0.190476,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.152381
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.032787,
+          "normalized_score": 0.032787,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.019672
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.126984,
+          "normalized_score": 0.126984,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.101587
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.059028,
+          "normalized_score": 0.059028,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.035417
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 54.2254,
+          "normalized_score": 0.542254,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.813381
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 3.5,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.571429,
+          "normalized_score": 0.571429,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.285714
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.142857,
+        "rouge1_recall": 0.285714,
+        "rouge1_f1": 0.190476,
+        "rouge2_precision": 0.02439,
+        "rouge2_recall": 0.05,
+        "rouge2_f1": 0.032787,
+        "rougeL_precision": 0.095238,
+        "rougeL_recall": 0.190476,
+        "rougeL_f1": 0.126984
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.142857,
+        "bleu2": 0.02439,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.059028
+      },
+      "readability_analysis": {
+        "total_chars": 218,
+        "total_words": 42,
+        "total_sentences": 12,
+        "total_syllables": 74,
+        "avg_word_length_chars": 5.1905,
+        "avg_sentence_length_words": 3.5,
+        "avg_syllables_per_word": 1.7619,
+        "flesch_reading_ease": 54.2254,
+        "flesch_kincaid_grade": 6.5655,
+        "gunning_fog_index": 8.0667,
+        "smog_index": 7.1833,
+        "automated_readability_index": 4.7671,
+        "coleman_liau_index": 6.2629,
+        "type_token_ratio": 0.571429,
+        "lexical_diversity": 0.571429,
+        "max_sentence_length_words": 7,
+        "min_sentence_length_words": 1,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": true,
+        "has_question_mark": true,
+        "numeric_count": 13,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.333333,
+        "toxic_words_found": [
+          "anjing"
+        ]
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.538406,
+        "total_metrics": 14,
+        "metrics_passed": 5,
+        "metrics_failed": 9,
+        "pass_rate": 0.357143,
+        "dyslexia_compliance_score": 0.85,
+        "execution_time_seconds": 0.9201
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_008",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "ministral-3:14b-cloud",
+      "input_prompt": "Buat 1 soal penjumlahan untuk anak disleksia bertema permen dengan jawaban.",
+      "actual_output": "**Soal:**\nAda 5 permen di kotak.\nIbu beri 3 permen lagi.\nBerapa permen sekarang?\n\n---\n**Jawaban:** 8 permen\n\n---\n**Alur Berpikir:**\n1. Ada 5 permen di kotak (gambar kotak dengan 5 permen).\n2. Ibu beri 3 permen lagi (tambahkan 3 permen ke kotak).\n3. Hitung semua permen: 5 + 3 = 8.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.388666,
+          "normalized_score": 0.388666,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.388666
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.043104,
+          "normalized_score": 0.043104,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.043104
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.125,
+          "normalized_score": 0.125,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.15
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.85,
+          "normalized_score": 0.85,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 2.125
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.173913,
+          "normalized_score": 0.173913,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.13913
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.029851,
+          "normalized_score": 0.029851,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.017911
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.115942,
+          "normalized_score": 0.115942,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.092754
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.051571,
+          "normalized_score": 0.051571,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.030943
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 53.3717,
+          "normalized_score": 0.533717,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.800575
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 5.3333,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.25
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.125,
+        "rouge1_recall": 0.285714,
+        "rouge1_f1": 0.173913,
+        "rouge2_precision": 0.021277,
+        "rouge2_recall": 0.05,
+        "rouge2_f1": 0.029851,
+        "rougeL_precision": 0.083333,
+        "rougeL_recall": 0.190476,
+        "rougeL_f1": 0.115942
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.125,
+        "bleu2": 0.021277,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.051571
+      },
+      "readability_analysis": {
+        "total_chars": 239,
+        "total_words": 48,
+        "total_sentences": 9,
+        "total_syllables": 84,
+        "avg_word_length_chars": 4.9792,
+        "avg_sentence_length_words": 5.3333,
+        "avg_syllables_per_word": 1.75,
+        "flesch_reading_ease": 53.3717,
+        "flesch_kincaid_grade": 7.14,
+        "gunning_fog_index": 6.3,
+        "smog_index": 7.0825,
+        "automated_readability_index": 4.6885,
+        "coleman_liau_index": 7.9275,
+        "type_token_ratio": 0.5,
+        "lexical_diversity": 0.5,
+        "max_sentence_length_words": 10,
+        "min_sentence_length_words": 1,
+        "sentences_exceeding_8_words": 2,
+        "sentences_exceeding_8_words_pct": 0.222222,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": true,
+        "has_question_mark": true,
+        "numeric_count": 13,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.561064,
+        "total_metrics": 14,
+        "metrics_passed": 6,
+        "metrics_failed": 8,
+        "pass_rate": 0.428571,
+        "dyslexia_compliance_score": 0.85,
+        "execution_time_seconds": 0.9238
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_ZERO_SHOT_ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "ministral-3:14b-cloud",
+      "input_prompt": "Buat 1 soal penjumlahan untuk anak disleksia bertema apel. Sertakan jawaban.",
+      "actual_output": "**Soal:**\nAda 5 apel di meja.\nIbu tambah 3 apel lagi.\nBerapa apel sekarang?\n\n**Jawaban:**\n8 apel\n\n**Alur Berpikir:**\n1. Lihat 5 apel di meja.\n2. Ibu tambah 3 apel.\n3. Hitung 5 + 3 = 8.\n4. Jawab: 8 apel.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.392308,
+          "normalized_score": 0.392308,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.392308
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.05102,
+          "normalized_score": 0.05102,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.05102
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.136364,
+          "normalized_score": 0.136364,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.163637
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.93,
+          "normalized_score": 0.93,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 2.325
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.166667,
+          "normalized_score": 0.166667,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.133334
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.034483,
+          "normalized_score": 0.034483,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.02069
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.133333,
+          "normalized_score": 0.133333,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.106666
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.058085,
+          "normalized_score": 0.058085,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.034851
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 60.0671,
+          "normalized_score": 0.600671,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.901006
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 3.5455,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.564103,
+          "normalized_score": 0.564103,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.282052
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.128205,
+        "rouge1_recall": 0.238095,
+        "rouge1_f1": 0.166667,
+        "rouge2_precision": 0.026316,
+        "rouge2_recall": 0.05,
+        "rouge2_f1": 0.034483,
+        "rougeL_precision": 0.102564,
+        "rougeL_recall": 0.190476,
+        "rougeL_f1": 0.133333
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.128205,
+        "bleu2": 0.026316,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.058085
+      },
+      "readability_analysis": {
+        "total_chars": 172,
+        "total_words": 39,
+        "total_sentences": 11,
+        "total_syllables": 66,
+        "avg_word_length_chars": 4.4103,
+        "avg_sentence_length_words": 3.5455,
+        "avg_syllables_per_word": 1.6923,
+        "flesch_reading_ease": 60.0671,
+        "flesch_kincaid_grade": 5.762,
+        "gunning_fog_index": 5.5207,
+        "smog_index": 6.3029,
+        "automated_readability_index": 1.115,
+        "coleman_liau_index": 1.7836,
+        "type_token_ratio": 0.564103,
+        "lexical_diversity": 0.564103,
+        "max_sentence_length_words": 6,
+        "min_sentence_length_words": 1,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": true,
+        "has_question_mark": true,
+        "numeric_count": 13,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.582974,
+        "total_metrics": 14,
+        "metrics_passed": 6,
+        "metrics_failed": 8,
+        "pass_rate": 0.428571,
+        "dyslexia_compliance_score": 0.93,
+        "execution_time_seconds": 0.8555
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_FEW_SHOT_ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "ministral-3:14b-cloud",
+      "input_prompt": "Contoh 1:\nSoal: Ada 3 jeruk. Ibu beli 2 lagi. Berapa jeruknya?\nJawaban: 3 + 2 = 5. Jeruknya ada 5.\n\nContoh 2:\nSoal: Ada 4 buku. Kamu dapat 1 lagi. Berapa bukunya?\nJawaban: 4 + 1 = 5. Bukunya ada 5\n\nContoh 3:\nSoal: Ada 2 kucing. Datang 3 lagi. Berapa kucingnya?\nJawaban: 2 + 3 = 5. Kucingnya ada 5.\n\nSekarang buat 1 soal penjumlahan bertema apel. Gunakan contoh di atas sebagai referensi",
+      "actual_output": "**Soal:**\nAda 5 apel merah.\nIbu tambah 3 apel hijau.\nBerapa apel total?\n\n**Jawaban:**\n5 + 3 = 8. Apel total ada 8.\n\n**Alur Berpikir:**\n1. Ada 5 apel merah.\n2. Ibu tambah 3 apel hijau.\n3. Hitung semua apel: 5 + 3.\n4. Hasilnya adalah 8.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.87956,
+          "normalized_score": 0.87956,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.87956
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.046296,
+          "normalized_score": 0.046296,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.046296
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.136364,
+          "normalized_score": 0.136364,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.163637
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.85,
+          "normalized_score": 0.85,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 2.125
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.153846,
+          "normalized_score": 0.153846,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.123077
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.031746,
+          "normalized_score": 0.031746,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.019048
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.123077,
+          "normalized_score": 0.123077,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.098462
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.051407,
+          "normalized_score": 0.051407,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.030844
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 55.3496,
+          "normalized_score": 0.553496,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.830244
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 3.3846,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.25
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.113636,
+        "rouge1_recall": 0.238095,
+        "rouge1_f1": 0.153846,
+        "rouge2_precision": 0.023256,
+        "rouge2_recall": 0.05,
+        "rouge2_f1": 0.031746,
+        "rougeL_precision": 0.090909,
+        "rougeL_recall": 0.190476,
+        "rougeL_f1": 0.123077
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.113636,
+        "bleu2": 0.023256,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.051407
+      },
+      "readability_analysis": {
+        "total_chars": 198,
+        "total_words": 44,
+        "total_sentences": 13,
+        "total_syllables": 77,
+        "avg_word_length_chars": 4.5,
+        "avg_sentence_length_words": 3.3846,
+        "avg_syllables_per_word": 1.75,
+        "flesch_reading_ease": 55.3496,
+        "flesch_kincaid_grade": 6.38,
+        "gunning_fog_index": 5.8993,
+        "smog_index": 6.3968,
+        "automated_readability_index": 1.4573,
+        "coleman_liau_index": 1.9145,
+        "type_token_ratio": 0.5,
+        "lexical_diversity": 0.5,
+        "max_sentence_length_words": 5,
+        "min_sentence_length_words": 1,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": true,
+        "has_question_mark": true,
+        "numeric_count": 15,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.592127,
+        "total_metrics": 14,
+        "metrics_passed": 7,
+        "metrics_failed": 7,
+        "pass_rate": 0.5,
+        "dyslexia_compliance_score": 0.85,
+        "execution_time_seconds": 0.9851
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_COT_ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "ministral-3:14b-cloud",
+      "input_prompt": "Buat 1 soal penjumlahan bertema apel untuk anak disleksia.\n\nIkuti 3 langkah ini:\nLangkah 1: Pilih 2 angka kecil antara 1 sampai 10.\nLangkah 2: Tulis soal maksimal 8 kata menggunakan kata 'apel'.\nLangkah 3: Tulis jawaban dengan persamaan (contoh: 3 + 4 = 7).\n\nMulai sekarang.",
+      "actual_output": "**Soal:**\nPak Ryan punya 4 apel.\nIbu beri 3 apel lagi.\nBerapa apel Pak Ryan sekarang?\n\n---\n**Jawaban:**\n4 + 3 = **7 apel**\n\n---\n**Alur Berpikir:**\n1. Pak Ryan punya **4 apel**.\n2. Ibu beri **3 apel** lagi.\n3. Hitung semua apel: 4 + 3 = **7**.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.756658,
+          "normalized_score": 0.756658,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.756658
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.024039,
+          "normalized_score": 0.024039,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.024039
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.075,
+          "normalized_score": 0.075,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.09
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.93,
+          "normalized_score": 0.93,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 2.325
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.15873,
+          "normalized_score": 0.15873,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.126984
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.032787,
+          "normalized_score": 0.032787,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.019672
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.126984,
+          "normalized_score": 0.126984,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.101587
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.053885,
+          "normalized_score": 0.053885,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.032331
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 65.1269,
+          "normalized_score": 0.651269,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.976903
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 4.6667,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.47619,
+          "normalized_score": 0.47619,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.238095
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.119048,
+        "rouge1_recall": 0.238095,
+        "rouge1_f1": 0.15873,
+        "rouge2_precision": 0.02439,
+        "rouge2_recall": 0.05,
+        "rouge2_f1": 0.032787,
+        "rougeL_precision": 0.095238,
+        "rougeL_recall": 0.190476,
+        "rougeL_f1": 0.126984
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.119048,
+        "bleu2": 0.02439,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.053885
+      },
+      "readability_analysis": {
+        "total_chars": 206,
+        "total_words": 42,
+        "total_sentences": 9,
+        "total_syllables": 68,
+        "avg_word_length_chars": 4.9048,
+        "avg_sentence_length_words": 4.6667,
+        "avg_syllables_per_word": 1.619,
+        "flesch_reading_ease": 65.1269,
+        "flesch_kincaid_grade": 5.3348,
+        "gunning_fog_index": 5.6762,
+        "smog_index": 6.6515,
+        "automated_readability_index": 4.0048,
+        "coleman_liau_index": 6.6971,
+        "type_token_ratio": 0.47619,
+        "lexical_diversity": 0.47619,
+        "max_sentence_length_words": 8,
+        "min_sentence_length_words": 1,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": true,
+        "has_question_mark": true,
+        "numeric_count": 13,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.599486,
+        "total_metrics": 14,
+        "metrics_passed": 6,
+        "metrics_failed": 8,
+        "pass_rate": 0.428571,
+        "dyslexia_compliance_score": 0.93,
+        "execution_time_seconds": 0.8798
+      }
+    },
+    {
+      "test_case_id": "TC_MAT_PENJUMLAHAN_HYBRID_ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "model": "ministral-3:14b-cloud",
+      "input_prompt": "Contoh cara membuat soal:\n\nContoh 1:\nLangkah 1 → pilih angka: 3 dan 2\nLangkah 2 → tulis soal: 'Ada 3 jeruk. Ibu beli 2 lagi. Berapa?'\nLangkah 3 → tulis jawaban: '3 + 2 = 5. Jeruknya ada 5.'\n\nContoh 2:\nLangkah 1 → pilih angka: 5 dan 3\nLangkah 2 → tulis soal: 'Ada 5 bola. Dapat 3 lagi. Berapa?'\nLangkah 3 → tulis jawaban: '5 + 3 = 8. Bolanya ada 8.'\n\nSekarang buat 1 soal penjumlahan bertema apel. Ikuti 3 langkah di atas",
+      "actual_output": "**Soal:**\nAda 4 apel merah.\nIbu beli 3 apel lagi.\nBerapa apel sekarang?\n\n---\n**Jawaban:**\n4 + 3 = **7 apel**.\n\n---\n**Alur Berpikir:**\n1. Ada 4 apel → gambar 4 apel.\n2. Ibu beli 3 apel lagi → tambah 3 apel.\n3. Hitung semua apel → 4 + 3 = 7.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context_provided": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "metrics_detail": [
+        {
+          "metric_name": "answer_relevancy",
+          "raw_score": 0.800357,
+          "normalized_score": 0.800357,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.800357
+        },
+        {
+          "metric_name": "context_relevancy",
+          "raw_score": 0.023585,
+          "normalized_score": 0.023585,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.023585
+        },
+        {
+          "metric_name": "faithfulness",
+          "raw_score": 0.071429,
+          "normalized_score": 0.071429,
+          "weight": 1.2,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.085715
+        },
+        {
+          "metric_name": "toxicity",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 2.0,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 2.0
+        },
+        {
+          "metric_name": "bias",
+          "raw_score": 0.0,
+          "normalized_score": 1.0,
+          "weight": 1.5,
+          "threshold": 0.1,
+          "is_inverted_metric": true,
+          "passed_threshold": true,
+          "weighted_contribution": 1.5
+        },
+        {
+          "metric_name": "dyslexia_compliance",
+          "raw_score": 0.85,
+          "normalized_score": 0.85,
+          "weight": 2.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 2.125
+        },
+        {
+          "metric_name": "llm_judge_score",
+          "raw_score": 0.5,
+          "normalized_score": 0.5,
+          "weight": 2.0,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "rouge1_f1",
+          "raw_score": 0.15625,
+          "normalized_score": 0.15625,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.125
+        },
+        {
+          "metric_name": "rouge2_f1",
+          "raw_score": 0.032258,
+          "normalized_score": 0.032258,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.019355
+        },
+        {
+          "metric_name": "rougeL_f1",
+          "raw_score": 0.125,
+          "normalized_score": 0.125,
+          "weight": 0.8,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.1
+        },
+        {
+          "metric_name": "bleu_avg",
+          "raw_score": 0.052617,
+          "normalized_score": 0.052617,
+          "weight": 0.6,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.03157
+        },
+        {
+          "metric_name": "flesch_reading_ease",
+          "raw_score": 56.8798,
+          "normalized_score": 0.568798,
+          "weight": 1.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": true,
+          "weighted_contribution": 0.853197
+        },
+        {
+          "metric_name": "avg_sentence_length_words",
+          "raw_score": 4.3,
+          "normalized_score": 1.0,
+          "weight": 1.0,
+          "threshold": 0.5,
+          "is_inverted_metric": true,
+          "passed_threshold": false,
+          "weighted_contribution": 1.0
+        },
+        {
+          "metric_name": "type_token_ratio",
+          "raw_score": 0.488372,
+          "normalized_score": 0.488372,
+          "weight": 0.5,
+          "threshold": 0.5,
+          "is_inverted_metric": false,
+          "passed_threshold": false,
+          "weighted_contribution": 0.244186
+        }
+      ],
+      "rouge_scores_full": {
+        "rouge1_precision": 0.116279,
+        "rouge1_recall": 0.238095,
+        "rouge1_f1": 0.15625,
+        "rouge2_precision": 0.02381,
+        "rouge2_recall": 0.05,
+        "rouge2_f1": 0.032258,
+        "rougeL_precision": 0.093023,
+        "rougeL_recall": 0.190476,
+        "rougeL_f1": 0.125
+      },
+      "bleu_scores_full": {
+        "bleu1": 0.116279,
+        "bleu2": 0.02381,
+        "bleu3": 0.0,
+        "bleu4": 0.0,
+        "bleu_avg": 0.052617
+      },
+      "readability_analysis": {
+        "total_chars": 199,
+        "total_words": 43,
+        "total_sentences": 10,
+        "total_syllables": 74,
+        "avg_word_length_chars": 4.6279,
+        "avg_sentence_length_words": 4.3,
+        "avg_syllables_per_word": 1.7209,
+        "flesch_reading_ease": 56.8798,
+        "flesch_kincaid_grade": 6.394,
+        "gunning_fog_index": 5.4409,
+        "smog_index": 6.4641,
+        "automated_readability_index": 2.5174,
+        "coleman_liau_index": 4.5284,
+        "type_token_ratio": 0.488372,
+        "lexical_diversity": 0.488372,
+        "max_sentence_length_words": 8,
+        "min_sentence_length_words": 1,
+        "sentences_exceeding_8_words": 0,
+        "sentences_exceeding_8_words_pct": 0.0,
+        "complex_word_count_in_forbidden_list": 0,
+        "complex_word_ratio_forbidden": 0.0,
+        "has_explicit_answer": true,
+        "has_question_mark": true,
+        "numeric_count": 15,
+        "numbers_in_range_1_20": true
+      },
+      "toxicity_analysis": {
+        "score": 0.0,
+        "toxic_words_found": []
+      },
+      "bias_analysis": {
+        "score": 0.0,
+        "bias_phrases_found": []
+      },
+      "llm_judge": {
+        "score": 0.5,
+        "raw_response": "",
+        "judge_model": "gpt-oss:120b-cloud"
+      },
+      "test_case_summary": {
+        "composite_weighted_score": 0.582821,
+        "total_metrics": 14,
+        "metrics_passed": 6,
+        "metrics_failed": 8,
+        "pass_rate": 0.428571,
+        "dyslexia_compliance_score": 0.85,
+        "execution_time_seconds": 0.9058
+      }
+    }
+  ],
+  "_internal": {
+    "raw_by_metric": {
+      "answer_relevancy": [
+        0.269231,
+        0.321818,
+        0.13,
+        0.370824,
+        0.375,
+        0.442856,
+        0.462698,
+        0.388666,
+        0.392308,
+        0.87956,
+        0.756658,
+        0.800357
+      ],
+      "context_relevancy": [
+        0.05102,
+        0.05814,
+        0.031779,
+        0.02451,
+        0.054348,
+        0.068182,
+        0.098711,
+        0.043104,
+        0.05102,
+        0.046296,
+        0.024039,
+        0.023585
+      ],
+      "faithfulness": [
+        0.142857,
+        0.157895,
+        0.115385,
+        0.071429,
+        0.142857,
+        0.173077,
+        0.1875,
+        0.125,
+        0.136364,
+        0.136364,
+        0.075,
+        0.071429
+      ],
+      "toxicity": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.333333,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bias": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dyslexia_compliance": [
+        0.85,
+        0.85,
+        0.85,
+        0.93,
+        0.85,
+        0.85,
+        0.85,
+        0.85,
+        0.93,
+        0.85,
+        0.93,
+        0.85
+      ],
+      "llm_judge_score": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "rouge1_f1": [
+        0.166667,
+        0.185185,
+        0.093023,
+        0.16129,
+        0.175439,
+        0.181818,
+        0.190476,
+        0.173913,
+        0.166667,
+        0.153846,
+        0.15873,
+        0.15625
+      ],
+      "rouge2_f1": [
+        0.034483,
+        0.038462,
+        0.015748,
+        0.033333,
+        0.036364,
+        0.03125,
+        0.032787,
+        0.029851,
+        0.034483,
+        0.031746,
+        0.032787,
+        0.032258
+      ],
+      "rougeL_f1": [
+        0.133333,
+        0.148148,
+        0.093023,
+        0.129032,
+        0.140351,
+        0.121212,
+        0.126984,
+        0.115942,
+        0.133333,
+        0.123077,
+        0.126984,
+        0.125
+      ],
+      "bleu_avg": [
+        0.058085,
+        0.06881,
+        0.022786,
+        0.055216,
+        0.062994,
+        0.055048,
+        0.059028,
+        0.051571,
+        0.058085,
+        0.051407,
+        0.053885,
+        0.052617
+      ],
+      "flesch_reading_ease": [
+        56.0286,
+        52.231,
+        43.8109,
+        60.9915,
+        51.04,
+        54.5088,
+        54.2254,
+        53.3717,
+        60.0671,
+        55.3496,
+        65.1269,
+        56.8798
+      ],
+      "avg_sentence_length_words": [
+        3.25,
+        3.3,
+        3.1765,
+        3.4167,
+        3.0,
+        3.75,
+        3.5,
+        5.3333,
+        3.5455,
+        3.3846,
+        4.6667,
+        4.3
+      ],
+      "type_token_ratio": [
+        0.538462,
+        0.575758,
+        0.361111,
+        0.512195,
+        0.583333,
+        0.577778,
+        0.571429,
+        0.5,
+        0.564103,
+        0.5,
+        0.47619,
+        0.488372
+      ]
+    },
+    "by_category": {
+      "Matematika": {
+        "answer_relevancy": [
+          0.269231,
+          0.321818,
+          0.13,
+          0.370824,
+          0.375,
+          0.442856,
+          0.462698,
+          0.388666,
+          0.392308,
+          0.87956,
+          0.756658,
+          0.800357
+        ],
+        "context_relevancy": [
+          0.05102,
+          0.05814,
+          0.031779,
+          0.02451,
+          0.054348,
+          0.068182,
+          0.098711,
+          0.043104,
+          0.05102,
+          0.046296,
+          0.024039,
+          0.023585
+        ],
+        "faithfulness": [
+          0.142857,
+          0.157895,
+          0.115385,
+          0.071429,
+          0.142857,
+          0.173077,
+          0.1875,
+          0.125,
+          0.136364,
+          0.136364,
+          0.075,
+          0.071429
+        ],
+        "toxicity": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.333333,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bias": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dyslexia_compliance": [
+          0.85,
+          0.85,
+          0.85,
+          0.93,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.93,
+          0.85,
+          0.93,
+          0.85
+        ],
+        "llm_judge_score": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "rouge1_f1": [
+          0.166667,
+          0.185185,
+          0.093023,
+          0.16129,
+          0.175439,
+          0.181818,
+          0.190476,
+          0.173913,
+          0.166667,
+          0.153846,
+          0.15873,
+          0.15625
+        ],
+        "rouge2_f1": [
+          0.034483,
+          0.038462,
+          0.015748,
+          0.033333,
+          0.036364,
+          0.03125,
+          0.032787,
+          0.029851,
+          0.034483,
+          0.031746,
+          0.032787,
+          0.032258
+        ],
+        "rougeL_f1": [
+          0.133333,
+          0.148148,
+          0.093023,
+          0.129032,
+          0.140351,
+          0.121212,
+          0.126984,
+          0.115942,
+          0.133333,
+          0.123077,
+          0.126984,
+          0.125
+        ],
+        "bleu_avg": [
+          0.058085,
+          0.06881,
+          0.022786,
+          0.055216,
+          0.062994,
+          0.055048,
+          0.059028,
+          0.051571,
+          0.058085,
+          0.051407,
+          0.053885,
+          0.052617
+        ],
+        "flesch_reading_ease": [
+          56.0286,
+          52.231,
+          43.8109,
+          60.9915,
+          51.04,
+          54.5088,
+          54.2254,
+          53.3717,
+          60.0671,
+          55.3496,
+          65.1269,
+          56.8798
+        ],
+        "avg_sentence_length_words": [
+          3.25,
+          3.3,
+          3.1765,
+          3.4167,
+          3.0,
+          3.75,
+          3.5,
+          5.3333,
+          3.5455,
+          3.3846,
+          4.6667,
+          4.3
+        ],
+        "type_token_ratio": [
+          0.538462,
+          0.575758,
+          0.361111,
+          0.512195,
+          0.583333,
+          0.577778,
+          0.571429,
+          0.5,
+          0.564103,
+          0.5,
+          0.47619,
+          0.488372
+        ]
+      }
+    },
+    "by_difficulty": {
+      "Mudah": {
+        "answer_relevancy": [
+          0.269231,
+          0.321818,
+          0.13,
+          0.370824,
+          0.375,
+          0.442856,
+          0.462698,
+          0.388666,
+          0.392308,
+          0.87956,
+          0.756658,
+          0.800357
+        ],
+        "context_relevancy": [
+          0.05102,
+          0.05814,
+          0.031779,
+          0.02451,
+          0.054348,
+          0.068182,
+          0.098711,
+          0.043104,
+          0.05102,
+          0.046296,
+          0.024039,
+          0.023585
+        ],
+        "faithfulness": [
+          0.142857,
+          0.157895,
+          0.115385,
+          0.071429,
+          0.142857,
+          0.173077,
+          0.1875,
+          0.125,
+          0.136364,
+          0.136364,
+          0.075,
+          0.071429
+        ],
+        "toxicity": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.333333,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bias": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dyslexia_compliance": [
+          0.85,
+          0.85,
+          0.85,
+          0.93,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.93,
+          0.85,
+          0.93,
+          0.85
+        ],
+        "llm_judge_score": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "rouge1_f1": [
+          0.166667,
+          0.185185,
+          0.093023,
+          0.16129,
+          0.175439,
+          0.181818,
+          0.190476,
+          0.173913,
+          0.166667,
+          0.153846,
+          0.15873,
+          0.15625
+        ],
+        "rouge2_f1": [
+          0.034483,
+          0.038462,
+          0.015748,
+          0.033333,
+          0.036364,
+          0.03125,
+          0.032787,
+          0.029851,
+          0.034483,
+          0.031746,
+          0.032787,
+          0.032258
+        ],
+        "rougeL_f1": [
+          0.133333,
+          0.148148,
+          0.093023,
+          0.129032,
+          0.140351,
+          0.121212,
+          0.126984,
+          0.115942,
+          0.133333,
+          0.123077,
+          0.126984,
+          0.125
+        ],
+        "bleu_avg": [
+          0.058085,
+          0.06881,
+          0.022786,
+          0.055216,
+          0.062994,
+          0.055048,
+          0.059028,
+          0.051571,
+          0.058085,
+          0.051407,
+          0.053885,
+          0.052617
+        ],
+        "flesch_reading_ease": [
+          56.0286,
+          52.231,
+          43.8109,
+          60.9915,
+          51.04,
+          54.5088,
+          54.2254,
+          53.3717,
+          60.0671,
+          55.3496,
+          65.1269,
+          56.8798
+        ],
+        "avg_sentence_length_words": [
+          3.25,
+          3.3,
+          3.1765,
+          3.4167,
+          3.0,
+          3.75,
+          3.5,
+          5.3333,
+          3.5455,
+          3.3846,
+          4.6667,
+          4.3
+        ],
+        "type_token_ratio": [
+          0.538462,
+          0.575758,
+          0.361111,
+          0.512195,
+          0.583333,
+          0.577778,
+          0.571429,
+          0.5,
+          0.564103,
+          0.5,
+          0.47619,
+          0.488372
+        ]
+      }
+    },
+    "by_model": {
+      "ministral-3:14b-cloud": {
+        "answer_relevancy": [
+          0.269231,
+          0.321818,
+          0.13,
+          0.370824,
+          0.375,
+          0.442856,
+          0.462698,
+          0.388666,
+          0.392308,
+          0.87956,
+          0.756658,
+          0.800357
+        ],
+        "context_relevancy": [
+          0.05102,
+          0.05814,
+          0.031779,
+          0.02451,
+          0.054348,
+          0.068182,
+          0.098711,
+          0.043104,
+          0.05102,
+          0.046296,
+          0.024039,
+          0.023585
+        ],
+        "faithfulness": [
+          0.142857,
+          0.157895,
+          0.115385,
+          0.071429,
+          0.142857,
+          0.173077,
+          0.1875,
+          0.125,
+          0.136364,
+          0.136364,
+          0.075,
+          0.071429
+        ],
+        "toxicity": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.333333,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bias": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dyslexia_compliance": [
+          0.85,
+          0.85,
+          0.85,
+          0.93,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.93,
+          0.85,
+          0.93,
+          0.85
+        ],
+        "llm_judge_score": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "rouge1_f1": [
+          0.166667,
+          0.185185,
+          0.093023,
+          0.16129,
+          0.175439,
+          0.181818,
+          0.190476,
+          0.173913,
+          0.166667,
+          0.153846,
+          0.15873,
+          0.15625
+        ],
+        "rouge2_f1": [
+          0.034483,
+          0.038462,
+          0.015748,
+          0.033333,
+          0.036364,
+          0.03125,
+          0.032787,
+          0.029851,
+          0.034483,
+          0.031746,
+          0.032787,
+          0.032258
+        ],
+        "rougeL_f1": [
+          0.133333,
+          0.148148,
+          0.093023,
+          0.129032,
+          0.140351,
+          0.121212,
+          0.126984,
+          0.115942,
+          0.133333,
+          0.123077,
+          0.126984,
+          0.125
+        ],
+        "bleu_avg": [
+          0.058085,
+          0.06881,
+          0.022786,
+          0.055216,
+          0.062994,
+          0.055048,
+          0.059028,
+          0.051571,
+          0.058085,
+          0.051407,
+          0.053885,
+          0.052617
+        ],
+        "flesch_reading_ease": [
+          56.0286,
+          52.231,
+          43.8109,
+          60.9915,
+          51.04,
+          54.5088,
+          54.2254,
+          53.3717,
+          60.0671,
+          55.3496,
+          65.1269,
+          56.8798
+        ],
+        "avg_sentence_length_words": [
+          3.25,
+          3.3,
+          3.1765,
+          3.4167,
+          3.0,
+          3.75,
+          3.5,
+          5.3333,
+          3.5455,
+          3.3846,
+          4.6667,
+          4.3
+        ],
+        "type_token_ratio": [
+          0.538462,
+          0.575758,
+          0.361111,
+          0.512195,
+          0.583333,
+          0.577778,
+          0.571429,
+          0.5,
+          0.564103,
+          0.5,
+          0.47619,
+          0.488372
+        ]
+      }
+    }
+  }
+}

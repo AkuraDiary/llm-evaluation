@@ -45,45 +45,53 @@ def generate_output(llm_client, model, prompt, use_ollama=False):
     return call_llm(llm_client, model, prompt)
 
 
-def build_test_cases(client, model, templates, use_ollama=False):
-    """
-    Generate LLM outputs for every prompt in every template and return
-    a list of fully-populated test-case dicts ready for evaluation.
-    """
+def build_test_cases(client, model, templates):
     test_cases = []
-    case_counter = {}
 
+    # ── user simulation (prompts array) ──────────────
     for template in templates:
-        prefix = template["id_prefix"]
-        case_counter[prefix] = 0
-
-        for prompt in template["prompts"]:
-            case_counter[prefix] += 1
-            tc_id = (
-                f"TC_{prefix}_"
-                f"{model.replace(':', '_').replace('-', '_').upper()}_"
-                f"{case_counter[prefix]:03d}"
-            )
-
-            if use_ollama:
-                actual_output = call_llm_ollama(client, model, prompt)
-            else:
-                actual_output = call_llm(client, model, prompt)
-
-            # Brief pause to avoid overwhelming local Ollama server
-            time.sleep(0.2)
-
+        for i, prompt in enumerate(template["prompts"], 1):
+            tc_id = f"TC_{template['id_prefix']}_USER_{model}_{i:03d}"
+            actual_output = call_llm_ollama(client, model, prompt)
+            
             test_cases.append({
                 "id": tc_id,
+                "model":model,
                 "category": template["category"],
                 "sub_category": template["sub_category"],
                 "difficulty_level": template["difficulty_level"],
-                "model": model,
+                "track": "user_simulation",       
+                "prompt_strategy": "natural",
                 "input": prompt,
                 "actual_output": actual_output,
                 "expected_output": template["expected_output"],
                 "context": template["context"],
                 "retrieval_context": template["context"],
+            })
+
+    # ── structured_prompts ──────────
+    for template in templates:
+        sp = template.get("structured_prompts", {})
+        for strategy, prompt in sp.items():
+            if not prompt:
+                continue
+            tc_id = f"TC_{template['id_prefix']}_{strategy.upper()}_{model}"
+            actual_output = call_llm_ollama(client, model, prompt)
+            time.sleep(0.2)
+            test_cases.append({
+                "id": tc_id,
+                "model":model,
+                "category": template["category"],
+                "sub_category": template["sub_category"],
+                "difficulty_level": template["difficulty_level"],
+                "track": "research",        
+                "prompt_strategy": strategy,       # zero_shot / few_shot / cot / hybrid
+                "input": prompt,
+                "actual_output": actual_output,
+                "expected_output": template["expected_output"],
+                "context": template["context"],
+                "retrieval_context": template["context"],
+                
             })
 
     return test_cases

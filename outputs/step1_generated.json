@@ -1,0 +1,302 @@
+{
+  "step": "generate",
+  "timestamp_utc": "2026-05-03T10:42:21.403299+00:00",
+  "models_evaluated": [
+    "ministral-3:14b-cloud"
+  ],
+  "generator_system_prompt": "Kamu adalah guru sekolah dasar yang ahli dalam membuat soal untuk anak-anak dengan disleksia. Ikuti aturan berikut dengan ketat:\n1. Gunakan kalimat sangat pendek, maksimal 8 kata per kalimat.\n2. Gunakan kata-kata sederhana sehari-hari, hindari istilah teknis.\n3. Gunakan objek konkret yang mudah divisualisasikan.\n4. Angka harus kecil, antara 1 sampai 20.\n5. Sertakan jawaban secara eksplisit di akhir.\n6. Jangan gunakan kalimat majemuk bertingkat.\nLangsung berikan pasangan dari key-value terdiri dari:\nSoal:\nJawaban:\nAlur Berpikir:\n",
+  "python_version": "3.12.7 (main, Feb 13 2025, 12:36:31) [Clang 16.0.0 (clang-1600.0.26.3)]",
+  "platform": "macOS-26.1-arm64-arm-64bit",
+  "generation_time_seconds": 19.351,
+  "total_test_cases": 12,
+  "test_cases": [
+    {
+      "id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_001",
+      "model": "ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "track": "user_simulation",
+      "prompt_strategy": "natural",
+      "input": "Buatkan 1 soal matematika penjumlahan sederhana untuk anak disleksia dengan tema buah apel beserta jawabannya.",
+      "actual_output": "**Soal:**\nAda 5 apel.\nTambah 3 apel lagi.\nBerapa apel sekarang?\n\n---\n**Jawaban:**\n8 apel.\n\n---\n**Alur Berpikir:**\n1. Ada 5 apel di meja.\n2. Saya tambah 3 apel lagi.\n3. Hitung: 5 + 3 = 8.\n4. Jadi, ada **8 apel** sekarang.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "retrieval_context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ]
+    },
+    {
+      "id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_002",
+      "model": "ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "track": "user_simulation",
+      "prompt_strategy": "natural",
+      "input": "Buatkan 1 soal penjumlahan untuk anak disleksia bertema bola mainan beserta jawabannya.",
+      "actual_output": "**Soal:**\nAda 5 bola merah.\nTambah 3 bola biru.\nBerapa bola sekarang?\n\n**Jawaban:**\n8 bola.\n\n**Alur Berpikir:**\n1. Lihat bola merah: **5**.\n2. Tambah bola biru: **3**.\n3. Hitung bersama: 5 + 3 = **8**.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "retrieval_context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ]
+    },
+    {
+      "id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_003",
+      "model": "ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "track": "user_simulation",
+      "prompt_strategy": "natural",
+      "input": "Buatkan soal penjumlahan sederhana bertema kelereng untuk anak disleksia kelas 1 SD.",
+      "actual_output": "**Soal:**\n\n1. **Ada 5 kelereng merah.**\n   **Tambah 3 kelereng biru.**\n   Berapa kelereng sekarang?\n\n2. **Lina punya 7 kelereng.**\n   **Ibu beri 2 kelereng lagi.**\n   Berapa kelereng Lina sekarang?\n\n3. **Budi main kelereng.**\n   **Dia punya 4 kelereng.**\n   **Teman beri 6 kelereng.**\n   Berapa kelereng Budi sekarang?\n\n4. **Ada 9 kelereng di meja.**\n   **Dina ambil 2 kelereng.**\n   Berapa kelereng tinggal?\n\n5. **Siti punya 10 kelereng.**\n   **Dia berikan 3 kelereng.**\n   Berapa kelereng Siti sekarang?\n\n---\n\n**Jawaban:**\n\n1. **8 kelereng**\n2. **9 kelereng**\n3. **10 kelereng**\n4. **7 kelereng**\n5. **7 kelereng**\n\n---\n**Alur Berpikir:**\n\n1. **5 + 3 = ?**\n   → Hitung 5 lalu tambah 3.\n   → 5, 6, 7, **8**.\n\n2. **7 + 2 = ?**\n   → Hitung 7 lalu tambah 2.\n   → 7",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "retrieval_context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ]
+    },
+    {
+      "id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_004",
+      "model": "ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "track": "user_simulation",
+      "prompt_strategy": "natural",
+      "input": "Buat 1 soal penjumlahan anak disleksia bertema pensil dengan jawaban yang jelas.",
+      "actual_output": "**Soal:**\nAda **3** pensil di meja.\nIbu tambah **4** pensil lagi.\nBerapa pensil sekarang?\n\n---\n**Jawaban:**\n**7** pensil.\n\n---\n**Alur Berpikir:**\n1. Lihat **3** pensil di meja.\n2. Ibu tambah **4** pensil.\n3. Hitung: **3** + **4** = **7**.\n4. Jawab: **7** pensil di meja.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "retrieval_context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ]
+    },
+    {
+      "id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_005",
+      "model": "ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "track": "user_simulation",
+      "prompt_strategy": "natural",
+      "input": "Buat 1 soal penjumlahan untuk anak disleksia dengan tema ikan di akuarium.",
+      "actual_output": "**Soal:**\nAkuarium ada 5 ikan emas.\nTambah 3 ikan cupang.\nBanyak ikan sekarang?\n\n---\n**Jawaban:**\n8 ikan.\n\n---\n**Alur Berpikir:**\n1. Lihat ikan emas: 5.\n2. Lihat ikan cupang: 3.\n3. Tambah 5 + 3.\n4. Hasilnya adalah 8.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "retrieval_context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ]
+    },
+    {
+      "id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_006",
+      "model": "ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "track": "user_simulation",
+      "prompt_strategy": "natural",
+      "input": "Buatkan 1 soal penjumlahan bertema bunga di taman untuk anak disleksia.",
+      "actual_output": "**Soal:**\nTaman ada 5 bunga merah.\nTeman membawa 3 bunga biru lagi.\nBerapa bunga di taman sekarang?\n\n---\n**Jawaban:**\n8 bunga.\n\n---\n**Alur Berpikir:**\n1. Ada 5 bunga merah → tulis angka **5**.\n2. Ditambah 3 bunga biru → tambah **3**.\n3. 5 + 3 = **8**.\n4. Jawab: **8 bunga**.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "retrieval_context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ]
+    },
+    {
+      "id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_007",
+      "model": "ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "track": "user_simulation",
+      "prompt_strategy": "natural",
+      "input": "Buatkan 1 soal penjumlahan sederhana bertema kucing dan anjing untuk anak disleksia.",
+      "actual_output": "**Soal:**\nDi halaman ada 5 kucing.\nTiba-tiba datang 3 anjing.\nBerapa hewan sekarang?\n\n---\n**Jawaban:**\n8 hewan.\n\n---\n**Alur Berpikir:**\n1. Ada 5 kucing di halaman.\n2. Datang 3 anjing lagi.\n3. Jumlahkan kucing dan anjing: 5 + 3 = 8.\n4. Jawab: 8 hewan.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "retrieval_context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ]
+    },
+    {
+      "id": "TC_MAT_PENJUMLAHAN_USER_ministral-3:14b-cloud_008",
+      "model": "ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "track": "user_simulation",
+      "prompt_strategy": "natural",
+      "input": "Buat 1 soal penjumlahan untuk anak disleksia bertema permen dengan jawaban.",
+      "actual_output": "**Soal:**\nAda 5 permen di kotak.\nIbu beri 3 permen lagi.\nBerapa permen sekarang?\n\n---\n**Jawaban:** 8 permen\n\n---\n**Alur Berpikir:**\n1. Ada 5 permen di kotak (gambar kotak dengan 5 permen).\n2. Ibu beri 3 permen lagi (tambahkan 3 permen ke kotak).\n3. Hitung semua permen: 5 + 3 = 8.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "retrieval_context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ]
+    },
+    {
+      "id": "TC_MAT_PENJUMLAHAN_ZERO_SHOT_ministral-3:14b-cloud",
+      "model": "ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "track": "research",
+      "prompt_strategy": "zero_shot",
+      "input": "Buat 1 soal penjumlahan untuk anak disleksia bertema apel. Sertakan jawaban.",
+      "actual_output": "**Soal:**\nAda 5 apel di meja.\nIbu tambah 3 apel lagi.\nBerapa apel sekarang?\n\n**Jawaban:**\n8 apel\n\n**Alur Berpikir:**\n1. Lihat 5 apel di meja.\n2. Ibu tambah 3 apel.\n3. Hitung 5 + 3 = 8.\n4. Jawab: 8 apel.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "retrieval_context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ]
+    },
+    {
+      "id": "TC_MAT_PENJUMLAHAN_FEW_SHOT_ministral-3:14b-cloud",
+      "model": "ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "track": "research",
+      "prompt_strategy": "few_shot",
+      "input": "Contoh 1:\nSoal: Ada 3 jeruk. Ibu beli 2 lagi. Berapa jeruknya?\nJawaban: 3 + 2 = 5. Jeruknya ada 5.\n\nContoh 2:\nSoal: Ada 4 buku. Kamu dapat 1 lagi. Berapa bukunya?\nJawaban: 4 + 1 = 5. Bukunya ada 5\n\nContoh 3:\nSoal: Ada 2 kucing. Datang 3 lagi. Berapa kucingnya?\nJawaban: 2 + 3 = 5. Kucingnya ada 5.\n\nSekarang buat 1 soal penjumlahan bertema apel. Gunakan contoh di atas sebagai referensi",
+      "actual_output": "**Soal:**\nAda 5 apel merah.\nIbu tambah 3 apel hijau.\nBerapa apel total?\n\n**Jawaban:**\n5 + 3 = 8. Apel total ada 8.\n\n**Alur Berpikir:**\n1. Ada 5 apel merah.\n2. Ibu tambah 3 apel hijau.\n3. Hitung semua apel: 5 + 3.\n4. Hasilnya adalah 8.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "retrieval_context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ]
+    },
+    {
+      "id": "TC_MAT_PENJUMLAHAN_COT_ministral-3:14b-cloud",
+      "model": "ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "track": "research",
+      "prompt_strategy": "cot",
+      "input": "Buat 1 soal penjumlahan bertema apel untuk anak disleksia.\n\nIkuti 3 langkah ini:\nLangkah 1: Pilih 2 angka kecil antara 1 sampai 10.\nLangkah 2: Tulis soal maksimal 8 kata menggunakan kata 'apel'.\nLangkah 3: Tulis jawaban dengan persamaan (contoh: 3 + 4 = 7).\n\nMulai sekarang.",
+      "actual_output": "**Soal:**\nPak Ryan punya 4 apel.\nIbu beri 3 apel lagi.\nBerapa apel Pak Ryan sekarang?\n\n---\n**Jawaban:**\n4 + 3 = **7 apel**\n\n---\n**Alur Berpikir:**\n1. Pak Ryan punya **4 apel**.\n2. Ibu beri **3 apel** lagi.\n3. Hitung semua apel: 4 + 3 = **7**.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "retrieval_context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ]
+    },
+    {
+      "id": "TC_MAT_PENJUMLAHAN_HYBRID_ministral-3:14b-cloud",
+      "model": "ministral-3:14b-cloud",
+      "category": "Matematika",
+      "sub_category": "Penjumlahan",
+      "difficulty_level": "Mudah",
+      "track": "research",
+      "prompt_strategy": "hybrid",
+      "input": "Contoh cara membuat soal:\n\nContoh 1:\nLangkah 1 → pilih angka: 3 dan 2\nLangkah 2 → tulis soal: 'Ada 3 jeruk. Ibu beli 2 lagi. Berapa?'\nLangkah 3 → tulis jawaban: '3 + 2 = 5. Jeruknya ada 5.'\n\nContoh 2:\nLangkah 1 → pilih angka: 5 dan 3\nLangkah 2 → tulis soal: 'Ada 5 bola. Dapat 3 lagi. Berapa?'\nLangkah 3 → tulis jawaban: '5 + 3 = 8. Bolanya ada 8.'\n\nSekarang buat 1 soal penjumlahan bertema apel. Ikuti 3 langkah di atas",
+      "actual_output": "**Soal:**\nAda 4 apel merah.\nIbu beli 3 apel lagi.\nBerapa apel sekarang?\n\n---\n**Jawaban:**\n4 + 3 = **7 apel**.\n\n---\n**Alur Berpikir:**\n1. Ada 4 apel → gambar 4 apel.\n2. Ibu beli 3 apel lagi → tambah 3 apel.\n3. Hitung semua apel → 4 + 3 = 7.",
+      "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format Soal:\nJawaban:\nAlur Berpikir:\n.",
+      "context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ],
+      "retrieval_context": [
+        "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
+        "Gunakan benda konkret yang dapat divisualisasikan.",
+        "Hindari kalimat majemuk dan bertumpuk.",
+        "Angka harus kecil dan mudah dibayangkan antara 1 sampai 10."
+      ]
+    }
+  ]
+}

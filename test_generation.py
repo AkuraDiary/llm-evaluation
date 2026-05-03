@@ -15,7 +15,7 @@ def main():
         headers={"Authorization": f"Bearer {OLLAMA_API_KEY}"}
     )
     model = MODELS_TO_EVALUATE_OLLAMA[0]
-    test_cases = build_test_cases(client=ollama_client, model=model, templates=TEMPLATE_TEST_CASES[1:2], use_ollama=True)
+    test_cases = build_test_cases(client=ollama_client, model=model, templates=TEMPLATE_TEST_CASES[1:2])
     
     print(f"[INFO] Total test cases untuk {model}: {len(test_cases)}")
 

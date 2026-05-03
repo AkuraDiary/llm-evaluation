@@ -20,12 +20,17 @@ JUDGE_MODEL = os.getenv("JUDGE_MODEL", "gpt-oss:120b-cloud") #deepseek-v3.1:671b
 # Ollama models
 MODELS_TO_EVALUATE_OLLAMA = [
     "ministral-3:14b-cloud",
-    "gpt-oss:20b-cloud",
-    "deepseek-v3.2:cloud",
-    "gemma4:31b-cloud",
-    "deepseek-v4-flash:cloud",
+    # "gpt-oss:20b-cloud",
+    # "deepseek-v3.2:cloud",
+    # "gemma4:31b-cloud",
+    # "deepseek-v4-flash:cloud",
 ]
 
+DESIRED_OUTPUT_FORMAT = (
+    "Soal:\n"
+    "Jawaban:\n"
+    "Alur Berpikir:\n"
+    )
 # ── Prompts ──────────────────────────────────────────────────────────────────
 SYSTEM_PROMPT_DYSLEXIA = (
     "Kamu adalah guru sekolah dasar yang ahli dalam membuat soal untuk anak-anak dengan disleksia. "
@@ -36,7 +41,10 @@ SYSTEM_PROMPT_DYSLEXIA = (
     "4. Angka harus kecil, antara 1 sampai 20.\n"
     "5. Sertakan jawaban secara eksplisit di akhir.\n"
     "6. Jangan gunakan kalimat majemuk bertingkat.\n"
-    "Langsung berikan pasangan soal dan jawaban tanpa penjelasan tambahan."
+    "Langsung berikan pasangan dari key-value terdiri dari:\n"
+    "Soal:\n"
+    "Jawaban:\n"
+    "Alur Berpikir:\n"
 )
 
 # ── Test-case templates ──────────────────────────────────────────────────────
@@ -71,7 +79,7 @@ TEMPLATE_TEST_CASES = [
         "category": "Matematika",
         "sub_category": "Penjumlahan",
         "difficulty_level": "Mudah",
-        "expected_output": "Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban eksplisit.",
+        "expected_output": f"Soal penjumlahan dengan kalimat sangat pendek, objek konkret, angka 1-10, dan jawaban. Output sesuai dengan format {DESIRED_OUTPUT_FORMAT}.",
         "context": [
             "Anak disleksia membutuhkan kalimat pendek maksimal 8 kata per kalimat.",
             "Gunakan benda konkret yang dapat divisualisasikan.",
@@ -82,20 +90,18 @@ TEMPLATE_TEST_CASES = [
             "Buatkan 1 soal matematika penjumlahan sederhana untuk anak disleksia dengan tema buah apel beserta jawabannya.",
             "Buatkan 1 soal penjumlahan untuk anak disleksia bertema bola mainan beserta jawabannya.",
             "Buatkan soal penjumlahan sederhana bertema kelereng untuk anak disleksia kelas 1 SD.",
-            "Buat soal penjumlahan anak disleksia bertema pensil dengan jawaban yang jelas.",
-            "Buat soal penjumlahan untuk anak disleksia dengan tema ikan di akuarium.",
-            "Buatkan soal penjumlahan bertema bunga di taman untuk anak disleksia.",
-            "Buatkan soal penjumlahan sederhana bertema kucing dan anjing untuk anak disleksia.",
+            "Buat 1 soal penjumlahan anak disleksia bertema pensil dengan jawaban yang jelas.",
+            "Buat 1 soal penjumlahan untuk anak disleksia dengan tema ikan di akuarium.",
+            "Buatkan 1 soal penjumlahan bertema bunga di taman untuk anak disleksia.",
+            "Buatkan 1 soal penjumlahan sederhana bertema kucing dan anjing untuk anak disleksia.",
             "Buat 1 soal penjumlahan untuk anak disleksia bertema permen dengan jawaban.",
         ],
         "structured_prompts": {
-            # ── ZERO-SHOT ────────────────────────────────────────────────────
             "zero_shot": (
                 "Buat 1 soal penjumlahan untuk anak disleksia bertema apel. "
                 "Sertakan jawaban."
             ),
 
-            # ── FEW-SHOT (3 examples) ────────────────────────────────────────
             "few_shot": (
                 "Contoh 1:\n"
                 "Soal: Ada 3 jeruk. Ibu beli 2 lagi. Berapa jeruknya?\n"
@@ -103,14 +109,14 @@ TEMPLATE_TEST_CASES = [
 
                 "Contoh 2:\n"
                 "Soal: Ada 4 buku. Kamu dapat 1 lagi. Berapa bukunya?\n"
-                "Jawaban: 4 + 1 = 5. Bukunya ada 5.\n\n"
+                "Jawaban: 4 + 1 = 5. Bukunya ada 5\n\n"
 
                 "Contoh 3:\n"
                 "Soal: Ada 2 kucing. Datang 3 lagi. Berapa kucingnya?\n"
                 "Jawaban: 2 + 3 = 5. Kucingnya ada 5.\n\n"
 
                 "Sekarang buat 1 soal penjumlahan bertema apel. "
-                "Ikuti format contoh di atas."
+                "Gunakan contoh di atas sebagai referensi"
             ),
 
             # ── COT (3 steps) ─────────────────────────────────────────────────
@@ -135,7 +141,7 @@ TEMPLATE_TEST_CASES = [
                 "Langkah 2 → tulis soal: 'Ada 5 bola. Dapat 3 lagi. Berapa?'\n"
                 "Langkah 3 → tulis jawaban: '5 + 3 = 8. Bolanya ada 8.'\n\n"
                 "Sekarang buat 1 soal penjumlahan bertema apel. "
-                "Ikuti 3 langkah di atas."
+                "Ikuti 3 langkah di atas"
             ),
         },
     },
@@ -146,7 +152,7 @@ TEMPLATE_TEST_CASES = [
         "category": "Matematika",
         "sub_category": "Pengurangan",
         "difficulty_level": "Mudah",
-        "expected_output": "Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas.",
+        "expected_output": f"Soal pengurangan dengan konteks konkret, kalimat pendek, angka 1-10, dan jawaban jelas. Output sesuai dengan format {DESIRED_OUTPUT_FORMAT}.",
         "context": [
             "Gunakan cerita konkret dalam kehidupan sehari-hari.",
             "Kalimat tidak boleh lebih dari 8 kata.",
@@ -155,10 +161,10 @@ TEMPLATE_TEST_CASES = [
         ],
         "prompts": [
             "Buatkan 1 soal pengurangan sederhana untuk anak disleksia bertema buah jeruk beserta jawabannya.",
-            "Buat soal pengurangan untuk anak disleksia dengan tema buku.",
-            "Buatkan soal pengurangan bertema kue untuk anak disleksia kelas 2 SD.",
+            "Buat 1 soal pengurangan untuk anak disleksia dengan tema buku.",
+            "Buatkan 1 soal pengurangan bertema kue untuk anak disleksia kelas 2 SD.",
             "Buat soal pengurangan sederhana bertema telur ayam untuk anak disleksia.",
-            "Buatkan soal pengurangan untuk anak disleksia dengan tema balon ulang tahun.",
+            "Buatkan 1 soal pengurangan untuk anak disleksia dengan tema balon ulang tahun.",
             "Buat 1 soal pengurangan bertema burung di pohon untuk anak disleksia.",
         ],
         "structured_prompts": {
@@ -203,6 +209,7 @@ TEMPLATE_TEST_CASES = [
                 "Langkah 1 → pilih angka: 6 dan 2\n"
                 "Langkah 2 → tulis soal: 'Ada 6 kue. Dimakan 2. Berapa sisanya?'\n"
                 "Langkah 3 → tulis jawaban: '6 - 2 = 4. Sisanya 4 kue.'\n\n"
+                
                 "Sekarang buat 1 soal pengurangan bertema jeruk. "
                 "Ikuti 3 langkah di atas."
             ),
@@ -215,7 +222,7 @@ TEMPLATE_TEST_CASES = [
         "category": "Matematika",
         "sub_category": "Perkalian",
         "difficulty_level": "Sedang",
-        "expected_output": "Soal perkalian dengan konteks konkret, petunjuk cara menjawab, dan persamaan matematis eksplisit.",
+        "expected_output": f"Soal perkalian dengan konteks konkret, petunjuk cara menjawab, dan persamaan matematis eksplisit. Output sesuai dengan format {DESIRED_OUTPUT_FORMAT}.",
         "context": [
             "Menggunakan konteks konkret membuat soal lebih mudah dipahami.",
             "Petunjuk cara menghitung sangat membantu anak disleksia.",
@@ -223,12 +230,12 @@ TEMPLATE_TEST_CASES = [
             "Jawaban harus menampilkan persamaan matematika secara eksplisit.",
         ],
         "prompts": [
-            "Buatkan soal perkalian untuk anak disleksia menggunakan tema jari tangan.",
-            "Buat soal perkalian sederhana bertema roda sepeda untuk anak disleksia.",
-            "Buatkan soal perkalian untuk anak disleksia dengan tema kotak pensil.",
-            "Buat soal perkalian bertema telur dalam keranjang untuk anak disleksia.",
-            "Buatkan soal perkalian bertema kaki binatang untuk anak disleksia kelas 3 SD.",
-            "Buat soal perkalian untuk anak disleksia dengan tema kantong permen.",
+            "Buatkan 1 soal perkalian untuk anak disleksia menggunakan tema jari tangan.",
+            "Buat 1 soal perkalian sederhana bertema roda sepeda untuk anak disleksia.",
+            "Buatkan 1 soal perkalian untuk anak disleksia dengan tema kotak pensil.",
+            "Buat 1 soal perkalian bertema telur dalam keranjang untuk anak disleksia.",
+            "Buatkan 1 soal perkalian bertema kaki binatang untuk anak disleksia kelas 3 SD.",
+            "Buat 1 soal perkalian untuk anak disleksia dengan tema kantong permen.",
         ],
         "structured_prompts": {
             "zero_shot": (
@@ -287,7 +294,7 @@ TEMPLATE_TEST_CASES = [
         "category": "Matematika",
         "sub_category": "Pembagian",
         "difficulty_level": "Sedang",
-        "expected_output": "Soal pembagian singkat dengan bahasa sehari-hari, kalimat tidak lebih dari 8 kata, dan jawaban eksplisit.",
+        "expected_output": f"Soal pembagian singkat dengan bahasa sehari-hari, kalimat tidak lebih dari 8 kata, dan jawaban eksplisit. Output sesuai dengan format {DESIRED_OUTPUT_FORMAT}.",
         "context": [
             "Kosa kata harus sangat sederhana dan mudah dimengerti anak SD.",
             "Hindari kalimat panjang yang penuh deskripsi tidak penting.",
@@ -295,12 +302,12 @@ TEMPLATE_TEST_CASES = [
             "Fokus pada soal utama tanpa cerita latar berlebihan.",
         ],
         "prompts": [
-            "Buatkan soal cerita pembagian untuk anak disleksia dengan tema cokelat.",
-            "Buat soal pembagian sederhana bertema apel dibagi adik untuk anak disleksia.",
-            "Buatkan soal pembagian untuk anak disleksia dengan tema roti.",
-            "Buat soal pembagian bertema kelereng dibagi teman untuk anak disleksia.",
-            "Buatkan soal pembagian sederhana bertema pizza untuk anak disleksia kelas 3 SD.",
-            "Buat soal pembagian untuk anak disleksia dengan tema bunga dibagi vas.",
+            "Buatkan 1 soal cerita pembagian untuk anak disleksia dengan tema cokelat.",
+            "Buat 1 soal pembagian sederhana bertema apel dibagi adik untuk anak disleksia.",
+            "Buatkan 1 soal pembagian untuk anak disleksia dengan tema roti.",
+            "Buat 1 soal pembagian bertema kelereng dibagi teman untuk anak disleksia.",
+            "Buatkan 1 soal pembagian sederhana bertema pizza untuk anak disleksia kelas 3 SD.",
+            "Buat 1 soal pembagian untuk anak disleksia dengan tema bunga dibagi vas.",
         ],
         "structured_prompts": {
             "zero_shot": (
@@ -356,7 +363,7 @@ TEMPLATE_TEST_CASES = [
         "category": "Bahasa Indonesia",
         "sub_category": "Membaca",
         "difficulty_level": "Mudah",
-        "expected_output": "Teks bacaan 2-3 kalimat pendek, satu pertanyaan literal, dan jawaban langsung dari teks.",
+        f"expected_output": "Teks bacaan 2-3 kalimat pendek, satu pertanyaan literal, dan jawaban langsung dari teks.  Output sesuai dengan format {DESIRED_OUTPUT_FORMAT}.",
         "context": [
             "Teks bacaan untuk disleksia maksimal 3 kalimat pendek.",
             "Setiap kalimat tidak lebih dari 6 kata.",
@@ -366,11 +373,11 @@ TEMPLATE_TEST_CASES = [
         "prompts": [
             "Buatkan 1 soal membaca pemahaman singkat untuk anak disleksia kelas 2 SD beserta jawaban.",
             "Buat teks bacaan pendek dan soal pemahaman untuk anak disleksia bertema hewan peliharaan.",
-            "Buatkan soal membaca pemahaman singkat untuk anak disleksia bertema sekolah.",
+            "Buatkan 1soal membaca pemahaman singkat untuk anak disleksia bertema sekolah.",
             "Buat teks bacaan 2-3 kalimat dan 1 pertanyaan untuk anak disleksia bertema buah.",
-            "Buatkan soal membaca pemahaman untuk anak disleksia dengan teks tentang cuaca.",
-            "Buat soal pemahaman bacaan singkat untuk anak disleksia bertema keluarga.",
-            "Buatkan teks pendek dan soal literal untuk anak disleksia bertema makanan.",
+            "Buatkan 1 soal membaca pemahaman untuk anak disleksia dengan teks tentang cuaca.",
+            "Buat 1 soal pemahaman bacaan singkat untuk anak disleksia bertema keluarga.",
+            "Buatkan teks pendek dan 1 soal literal untuk anak disleksia bertema makanan.",
         ],
         "structured_prompts": {
             "zero_shot": (
@@ -431,7 +438,7 @@ TEMPLATE_TEST_CASES = [
         "category": "Bahasa Indonesia",
         "sub_category": "Menulis",
         "difficulty_level": "Sedang",
-        "expected_output": "Soal kalimat rumpang dengan pilihan kata tersedia, kalimat sederhana, dan jawaban logis.",
+        "expected_output": f"Soal kalimat rumpang dengan pilihan kata tersedia, kalimat sederhana, dan jawaban logis. Output sesuai dengan format {DESIRED_OUTPUT_FORMAT}.",
         "context": [
             "Format kalimat rumpang lebih mudah bagi anak disleksia daripada menulis bebas.",
             "Menyediakan pilihan kata mengurangi tekanan kognitif.",
@@ -439,12 +446,12 @@ TEMPLATE_TEST_CASES = [
             "Konteks kalimat harus dekat dengan pengalaman sehari-hari anak.",
         ],
         "prompts": [
-            "Buatkan panduan soal menulis kalimat sederhana untuk anak disleksia kelas 3 SD beserta contoh jawaban.",
-            "Buat soal melengkapi kalimat rumpang untuk anak disleksia dengan pilihan kata.",
-            "Buatkan 3 soal kalimat rumpang sederhana untuk anak disleksia beserta pilihan kata dan jawaban.",
-            "Buat soal isi kalimat rumpang untuk anak disleksia bertema aktivitas sehari-hari.",
-            "Buatkan soal menulis untuk anak disleksia dengan format pilih kata yang tepat.",
-            "Buat soal melengkapi kalimat untuk anak disleksia dengan tema hobi.",
+            "Buatkan 1 panduan soal menulis kalimat sederhana untuk anak disleksia kelas 3 SD beserta contoh jawaban.",
+            "Buat 1 soal melengkapi kalimat rumpang untuk anak disleksia dengan pilihan kata.",
+            "Buatkan 1 soal kalimat rumpang sederhana untuk anak disleksia beserta pilihan kata dan jawaban.",
+            "Buat 1 soal isi kalimat rumpang untuk anak disleksia bertema aktivitas sehari-hari.",
+            "Buatkan 1 soal menulis untuk anak disleksia dengan format pilih kata yang tepat.",
+            "Buat 1 soal melengkapi kalimat untuk anak disleksia dengan tema hobi.",
         ],
         "structured_prompts": {
             "zero_shot": (
@@ -503,7 +510,7 @@ TEMPLATE_TEST_CASES = [
         "category": "IPA",
         "sub_category": "Hewan",
         "difficulty_level": "Mudah",
-        "expected_output": "Soal pilihan ganda singkat, kalimat tanya pendek maksimal 5 kata, dan pilihan jawaban kontras.",
+        "expected_output": f"Soal pilihan ganda singkat, kalimat tanya pendek maksimal 5 kata, dan pilihan jawaban kontras. Output sesuai dengan format {DESIRED_OUTPUT_FORMAT}.",
         "context": [
             "Format pilihan ganda sangat membantu anak disleksia.",
             "Kalimat pertanyaan tidak lebih dari 5 kata.",
@@ -512,12 +519,12 @@ TEMPLATE_TEST_CASES = [
         ],
         "prompts": [
             "Buatkan 1 soal IPA sederhana tentang hewan untuk anak disleksia kelas 3 SD beserta jawaban.",
-            "Buat soal pilihan ganda IPA tentang makanan hewan untuk anak disleksia.",
-            "Buatkan soal IPA tentang habitat hewan untuk anak disleksia dengan format pilihan ganda.",
-            "Buat soal pilihan ganda tentang ciri hewan untuk anak disleksia kelas 2 SD.",
-            "Buatkan soal IPA sederhana tentang cara gerak hewan untuk anak disleksia.",
-            "Buat soal pilihan ganda tentang hewan berkaki empat untuk anak disleksia.",
-            "Buatkan soal IPA tentang suara hewan untuk anak disleksia kelas 1 SD.",
+            "Buat 1 soal pilihan ganda IPA tentang makanan hewan untuk anak disleksia.",
+            "Buatkan 1 soal IPA tentang habitat hewan untuk anak disleksia dengan format pilihan ganda.",
+            "Buat 1 soal pilihan ganda tentang ciri hewan untuk anak disleksia kelas 2 SD.",
+            "Buatkan 1 soal IPA sederhana tentang cara gerak hewan untuk anak disleksia.",
+            "Buat 1 soal pilihan ganda tentang hewan berkaki empat untuk anak disleksia.",
+            "Buatkan 1 soal IPA tentang suara hewan untuk anak disleksia kelas 1 SD.",
         ],
         "structured_prompts": {
             "zero_shot": (
@@ -579,7 +586,7 @@ TEMPLATE_TEST_CASES = [
         "category": "IPA",
         "sub_category": "Tumbuhan",
         "difficulty_level": "Mudah",
-        "expected_output": "Soal pilihan ganda tentang tumbuhan dengan kalimat pendek dan pilihan jawaban jelas.",
+        f"expected_output": f"Soal pilihan ganda tentang tumbuhan dengan kalimat pendek dan pilihan jawaban jelas. Output sesuai dengan format {DESIRED_OUTPUT_FORMAT}.",
         "context": [
             "Gunakan analogi sederhana untuk menjelaskan konsep tumbuhan.",
             "Hindari terminologi ilmiah kompleks.",
@@ -587,12 +594,12 @@ TEMPLATE_TEST_CASES = [
             "Pertanyaan harus dijawab dengan satu kata atau kalimat pendek.",
         ],
         "prompts": [
-            "Buatkan soal IPA sederhana tentang bagian tumbuhan untuk anak disleksia kelas 2 SD.",
-            "Buat soal pilihan ganda tentang kebutuhan tumbuhan untuk anak disleksia.",
-            "Buatkan soal IPA tentang warna daun untuk anak disleksia dengan pilihan ganda.",
-            "Buat soal sederhana tentang buah dan biji untuk anak disleksia kelas 3 SD.",
-            "Buatkan soal pilihan ganda tentang akar tumbuhan untuk anak disleksia.",
-            "Buat soal IPA tentang tumbuhan yang dimakan untuk anak disleksia.",
+            "Buatkan 1 soal IPA sederhana tentang bagian tumbuhan untuk anak disleksia kelas 2 SD.",
+            "Buat 1 soal pilihan ganda tentang kebutuhan tumbuhan untuk anak disleksia.",
+            "Buatkan 1 soal IPA tentang warna daun untuk anak disleksia dengan pilihan ganda.",
+            "Buat 1 soal sederhana tentang buah dan biji untuk anak disleksia kelas 3 SD.",
+            "Buatkan 1 soal pilihan ganda tentang akar tumbuhan untuk anak disleksia.",
+            "Buat 1 soal IPA tentang tumbuhan yang dimakan untuk anak disleksia.",
         ],
         "structured_prompts": {
             "zero_shot": (
@@ -656,7 +663,7 @@ TEMPLATE_TEST_CASES = [
         "category": "IPS",
         "sub_category": "Lingkungan",
         "difficulty_level": "Mudah",
-        "expected_output": "Soal IPS tentang lingkungan sekitar dengan bahasa sangat sederhana dan jawaban konkret.",
+        "expected_output": f"Soal IPS tentang lingkungan sekitar dengan bahasa sangat sederhana dan jawaban konkret. Output sesuai dengan format {DESIRED_OUTPUT_FORMAT}.",
         "context": [
             "Gunakan konteks lingkungan yang dikenal anak sehari-hari.",
             "Kalimat sangat pendek dan tidak bertingkat.",
@@ -664,11 +671,11 @@ TEMPLATE_TEST_CASES = [
             "Hindari konsep abstrak seperti norma dan nilai sosial.",
         ],
         "prompts": [
-            "Buatkan soal IPS sederhana tentang lingkungan rumah untuk anak disleksia kelas 2 SD.",
-            "Buat soal pilihan ganda IPS tentang kebersihan lingkungan untuk anak disleksia.",
-            "Buatkan soal IPS tentang tempat-tempat di sekitar sekolah untuk anak disleksia.",
-            "Buat soal sederhana tentang gotong royong untuk anak disleksia kelas 3 SD.",
-            "Buatkan soal IPS tentang profesi di lingkungan sekitar untuk anak disleksia.",
+            "Buatkan 1 soal IPS sederhana tentang lingkungan rumah untuk anak disleksia kelas 2 SD.",
+            "Buat 1 soal pilihan ganda IPS tentang kebersihan lingkungan untuk anak disleksia.",
+            "Buatkan 1 soal IPS tentang tempat-tempat di sekitar sekolah untuk anak disleksia.",
+            "Buat 1 soal sederhana tentang gotong royong untuk anak disleksia kelas 3 SD.",
+            "Buatkan 1 soal IPS tentang profesi di lingkungan sekitar untuk anak disleksia.",
         ],
         "structured_prompts": {
             "zero_shot": (
@@ -730,7 +737,7 @@ TEMPLATE_TEST_CASES = [
         "category": "IPS",
         "sub_category": "Keluarga",
         "difficulty_level": "Mudah",
-        "expected_output": "Soal IPS tentang keluarga dengan kalimat pendek, pilihan ganda, dan jawaban konkret.",
+        "expected_output": f"Soal IPS tentang keluarga dengan kalimat pendek, pilihan ganda, dan jawaban konkret. Output sesuai dengan format {DESIRED_OUTPUT_FORMAT}.",
         "context": [
             "Tema keluarga dekat dengan kehidupan sehari-hari anak.",
             "Kalimat pendek maksimal 6 kata.",
@@ -738,11 +745,11 @@ TEMPLATE_TEST_CASES = [
             "Hindari pertanyaan yang membutuhkan penalaran abstrak.",
         ],
         "prompts": [
-            "Buatkan soal IPS tentang anggota keluarga untuk anak disleksia kelas 1 SD.",
-            "Buat soal pilihan ganda IPS tentang peran ayah dan ibu untuk anak disleksia.",
-            "Buatkan soal sederhana tentang kegiatan keluarga untuk anak disleksia.",
-            "Buat soal IPS tentang silsilah keluarga sederhana untuk anak disleksia kelas 2 SD.",
-            "Buatkan soal pilihan ganda tentang kasih sayang dalam keluarga untuk anak disleksia.",
+            "Buatkan 1 soal IPS tentang anggota keluarga untuk anak disleksia kelas 1 SD.",
+            "Buat 1 soal pilihan ganda IPS tentang peran ayah dan ibu untuk anak disleksia.",
+            "Buatkan 1 soal sederhana tentang kegiatan keluarga untuk anak disleksia.",
+            "Buat 1 soal IPS tentang silsilah keluarga sederhana untuk anak disleksia kelas 2 SD.",
+            "Buatkan 1 soal pilihan ganda tentang kasih sayang dalam keluarga untuk anak disleksia.",
         ],
         "structured_prompts": {
             "zero_shot": (
